@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Food, Handled</title>
+  <meta name="description" content="You don’t have to think about food this week." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="bg">
+    <div class="grain"></div>
+  </div>
+
+  <main class="app" aria-live="polite">
+    <header class="topbar">
+      <div class="brand" aria-label="Prototype brand">
+        <span class="dot"></span>
+        <span class="brandName">Food, Handled</span>
+      </div>
+      <button class="ghost" id="resetBtn" type="button" title="Reset flow">Reset</button>
+    </header>
+
+    <!-- SCREEN 1 -->
+    <section class="screen active" data-screen="0">
+      <div class="card hero">
+        <h1 class="h1">You don’t have to think about food this week.</h1>
+        <p class="sub">We’ll decide it. You just eat.</p>
+
+        <div class="ctaRow">
+          <button class="primary" id="handleBtn" type="button">Handle my food</button>
+          <button class="secondary" id="seeHowBtn" type="button">Show me how this works</button>
+        </div>
+
+        <p class="fineprint">Prototype — hardcoded. Built to feel calm.</p>
+      </div>
+    </section>
+
+    <!-- SCREEN 2 -->
+    <section class="screen" data-screen="1">
+      <div class="card">
+        <div class="pill">This week is handled</div>
+        <h2 class="h2">Tonight’s dinner</h2>
+
+        <div class="todayBox">
+          <div class="mealTitle" id="tonightMeal">Chicken & rice bowl</div>
+          <div class="mealMeta">~12 minutes • one pan • no thinking</div>
+        </div>
+
+        <div class="twoCol">
+          <div class="mini">
+            <div class="miniLabel">What you do</div>
+            <ul class="miniList">
+              <li>Heat protein</li>
+              <li>Add rice</li>
+              <li>Throw in veg</li>
+              <li>Done</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <div class="miniLabel">What you don’t do</div>
+            <ul class="miniList">
+              <li>No planning</li>
+              <li>No recipe hunting</li>
+              <li>No meal prep marathon</li>
+              <li>No “what should I eat?” spiral</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="navRow">
+          <button class="secondary" data-next="2" type="button">Okay, what’s the rest of the week?</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3 -->
+    <section class="screen" data-screen="2">
+      <div class="card">
+        <div class="pill">Simple rotation</div>
+        <h2 class="h2">You’ll rotate between these</h2>
+        <p class="sub">Small set. Familiar food. Minimal cleanup.</p>
+
+        <div class="mealGrid">
+          <div class="mealCard">
+            <div class="mealName">Chicken & rice bowl</div>
+            <div class="mealDesc">fast + filling</div>
+          </div>
+          <div class="mealCard">
+            <div class="mealName">Egg & veggie scramble</div>
+            <div class="mealDesc">10 minutes</div>
+          </div>
+          <div class="mealCard">
+            <div class="mealName">Yogurt + fruit + crunch</div>
+            <div class="mealDesc">no cook</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="micro">
+          <div class="microTitle">Why it feels easy</div>
+          <p class="microText">
+            Same ingredients show up more than once, so shopping stays short and your brain stays off.
+          </p>
+        </div>
+
+        <div class="navRow">
+          <button class="secondary" data-next="3" type="button">Show me what to buy</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 4 -->
+    <section class="screen" data-screen="3">
+      <div class="card">
+        <div class="pill">Optional</div>
+        <h2 class="h2">What to buy</h2>
+        <p class="sub">Collapsed by default. Open only if you need it.</p>
+
+        <details class="accordion" open="false">
+          <summary>Open grocery list (short)</summary>
+          <div class="listWrap">
+            <div class="listSection">
+              <div class="listHdr">Core (used multiple times)</div>
+              <ul class="list">
+                <li>Rotisserie chicken (or frozen chicken strips)</li>
+                <li>Microwave rice packets (or pre-cooked rice)</li>
+                <li>Eggs</li>
+                <li>Frozen mixed veggies</li>
+                <li>Greek yogurt (plain or vanilla)</li>
+                <li>Bananas or berries</li>
+              </ul>
+            </div>
+
+            <div class="listSection">
+              <div class="listHdr">Quick add-ons (optional)</div>
+              <ul class="list">
+                <li>Salsa or hot sauce</li>
+                <li>Shredded cheese (optional)</li>
+                <li>Granola or nuts (for yogurt)</li>
+              </ul>
+            </div>
+
+            <div class="tagRow">
+              <span class="tag">~10 items</span>
+              <span class="tag">1 store</span>
+              <span class="tag">minimal waste</span>
+            </div>
+          </div>
+        </details>
+
+        <div class="divider"></div>
+
+        <div class="finish">
+          <div class="finishTitle">You’re done.</div>
+          <p class="finishText">That’s the whole point. No dashboards. No planning. Just handled.</p>
+        </div>
+
+        <div class="ctaRow">
+          <button class="primary" id="restartBtn" type="button">Handle next week too</button>
+          <button class="secondary" id="copyLinkBtn" type="button">Copy share link</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span class="footerText">Disposable UX prototype • hardcoded • GitHub Pages-ready</span>
+    </footer>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <div class="bg">
+  <div class="bg" aria-hidden="true">
     <div class="grain"></div>
   </div>
 
@@ -18,68 +18,73 @@
         <span class="dot"></span>
         <span class="brandName">Food, Handled</span>
       </div>
-      <button class="ghost" id="resetBtn" type="button" title="Reset flow">Reset</button>
+
+      <!-- Reset stays quiet + only appears after start -->
+      <button class="ghost" id="resetBtn" type="button" title="Start over" hidden>Start over</button>
     </header>
 
-    <!-- SCREEN 1 -->
+    <!-- SCREEN 0 -->
     <section class="screen active" data-screen="0">
       <div class="card hero">
         <h1 class="h1">You don’t have to think about food this week.</h1>
-        <p class="sub">We’ll decide it. You just eat.</p>
+        <p class="sub">Tap once. Dinner shows up.</p>
 
         <div class="ctaRow">
           <button class="primary" id="handleBtn" type="button">Handle my food</button>
-          <button class="secondary" id="seeHowBtn" type="button">Show me how this works</button>
         </div>
 
-        <p class="fineprint">Prototype — hardcoded. Built to feel calm.</p>
+        <p class="fineprint">No account. No setup. Nothing to remember.</p>
       </div>
     </section>
 
-    <!-- SCREEN 2 -->
+    <!-- SCREEN 1 -->
     <section class="screen" data-screen="1">
       <div class="card">
-        <div class="pill">This week is handled</div>
+        <div class="pill">Tonight is handled</div>
         <h2 class="h2">Tonight’s dinner</h2>
 
         <div class="todayBox">
           <div class="mealTitle" id="tonightMeal">Chicken & rice bowl</div>
-          <div class="mealMeta">~12 minutes • one pan • no thinking</div>
+          <div class="mealMeta" id="tonightMeta">~12 minutes • one pan • low cleanup</div>
         </div>
 
         <div class="twoCol">
           <div class="mini">
-            <div class="miniLabel">What you do</div>
+            <div class="miniLabel">Do this</div>
             <ul class="miniList">
               <li>Heat protein</li>
               <li>Add rice</li>
               <li>Throw in veg</li>
-              <li>Done</li>
+              <li>Eat</li>
             </ul>
           </div>
           <div class="mini">
-            <div class="miniLabel">What you don’t do</div>
+            <div class="miniLabel">Not this</div>
             <ul class="miniList">
               <li>No planning</li>
               <li>No recipe hunting</li>
-              <li>No meal prep marathon</li>
-              <li>No “what should I eat?” spiral</li>
+              <li>No prep marathon</li>
+              <li>No spiral</li>
             </ul>
           </div>
         </div>
 
         <div class="navRow">
-          <button class="secondary" data-next="2" type="button">Okay, what’s the rest of the week?</button>
+          <button class="secondary" data-next="2" type="button">Show the rest</button>
+        </div>
+
+        <div class="stickyCta">
+          <button class="primary" data-next="2" type="button">Keep it handled</button>
         </div>
       </div>
     </section>
 
-    <!-- SCREEN 3 -->
+    <!-- SCREEN 2 -->
     <section class="screen" data-screen="2">
       <div class="card">
-        <div class="pill">Simple rotation</div>
+        <div class="pill">Small set</div>
         <h2 class="h2">You’ll rotate between these</h2>
-        <p class="sub">Small set. Familiar food. Minimal cleanup.</p>
+        <p class="sub">Familiar food. Minimal cleanup. Same shape every week.</p>
 
         <div class="mealGrid">
           <div class="mealCard">
@@ -98,31 +103,33 @@
 
         <div class="divider"></div>
 
-        <div class="micro">
-          <div class="microTitle">Why it feels easy</div>
-          <p class="microText">
-            Same ingredients show up more than once, so shopping stays short and your brain stays off.
-          </p>
-        </div>
+        <p class="microText">
+          Ingredients repeat on purpose — so shopping stays short and your brain stays off.
+        </p>
 
         <div class="navRow">
-          <button class="secondary" data-next="3" type="button">Show me what to buy</button>
+          <button class="secondary" data-next="3" type="button">If I need to shop</button>
+        </div>
+
+        <div class="stickyCta">
+          <button class="primary" data-next="3" type="button">Show what to buy</button>
         </div>
       </div>
     </section>
 
-    <!-- SCREEN 4 -->
+    <!-- SCREEN 3 -->
     <section class="screen" data-screen="3">
       <div class="card">
         <div class="pill">Optional</div>
         <h2 class="h2">What to buy</h2>
-        <p class="sub">Collapsed by default. Open only if you need it.</p>
+        <p class="sub">This stays closed unless you open it.</p>
 
-        <details class="accordion" open="false">
+        <!-- Collapsed by default (fixed) -->
+        <details class="accordion">
           <summary>Open grocery list (short)</summary>
           <div class="listWrap">
             <div class="listSection">
-              <div class="listHdr">Core (used multiple times)</div>
+              <div class="listHdr">Core (shows up more than once)</div>
               <ul class="list">
                 <li>Rotisserie chicken (or frozen chicken strips)</li>
                 <li>Microwave rice packets (or pre-cooked rice)</li>
@@ -153,13 +160,17 @@
         <div class="divider"></div>
 
         <div class="finish">
-          <div class="finishTitle">You’re done.</div>
-          <p class="finishText">That’s the whole point. No dashboards. No planning. Just handled.</p>
+          <div class="finishTitle">Done.</div>
+          <p class="finishText">Close this tab. Come back anytime. Same deal.</p>
         </div>
 
         <div class="ctaRow">
-          <button class="primary" id="restartBtn" type="button">Handle next week too</button>
-          <button class="secondary" id="copyLinkBtn" type="button">Copy share link</button>
+          <button class="primary" id="againBtn" type="button">Handle my food</button>
+          <button class="secondary" id="copyLinkBtn" type="button">Copy link</button>
+        </div>
+
+        <div class="quietRow">
+          <button class="ghost" id="backToMealsBtn" type="button">Back</button>
         </div>
       </div>
     </section>

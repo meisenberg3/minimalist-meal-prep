@@ -71,11 +71,7 @@ body{
   color: rgba(255,255,255,.86);
 }
 
-button{
-  border:0;
-  cursor:pointer;
-  font:inherit;
-}
+button{ border:0; cursor:pointer; font:inherit; }
 
 .ghost{
   background: transparent;
@@ -230,10 +226,7 @@ button{
   background: rgba(255,255,255,.03);
   border: 1px solid rgba(255,255,255,.10);
 }
-.mealName{
-  font-weight: 750;
-  letter-spacing:-.2px;
-}
+.mealName{ font-weight: 750; letter-spacing:-.2px; }
 .mealDesc{
   margin-top:6px;
   color: var(--muted);
@@ -246,10 +239,6 @@ button{
   margin: 16px 0;
 }
 
-.microTitle{
-  font-weight: 750;
-  margin-bottom: 6px;
-}
 .microText{
   margin:0;
   color: var(--muted);
@@ -312,6 +301,8 @@ button{
   line-height:1.55;
 }
 
+.quietRow{ margin-top: 10px; }
+
 .footer{
   margin-top:auto;
   padding: 6px 4px 14px;
@@ -321,6 +312,19 @@ button{
   font-size: 12.5px;
 }
 
+/* Sticky single primary action (shows safety: "one tap still works") */
+.stickyCta{
+  position: sticky;
+  bottom: 12px;
+  display:flex;
+  justify-content:flex-end;
+  margin-top: 18px;
+}
+.stickyCta .primary{
+  width: auto;
+}
+
+/* Screens */
 .screen{ display:none; }
 .screen.active{ display:block; animation: fadeUp .35s var(--ease); }
 @keyframes fadeUp{

@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Food, Handled</title>
   <meta name="description" content="You don’t have to think about food." />
   <link rel="stylesheet" href="./styles.css" />
 </head>
+
 <body>
   <div class="bg" aria-hidden="true">
     <div class="grain"></div>
@@ -18,119 +19,157 @@
         <span class="dot"></span>
         <span class="brandName">Food, Handled</span>
       </div>
-      <button class="ghost" id="startOverBtn" hidden>Start over</button>
+
+      <button class="ghost" data-goto="0" id="startOverBtn">Start over</button>
     </header>
 
-    <!-- SCREEN 0 -->
-    <section class="screen active" data-screen="0">
+    <!-- SCREEN s0 -->
+    <section class="screen active" data-screen="0" id="s0">
       <div class="card hero">
         <h1 class="h1">You don’t have to think about food.</h1>
         <p class="sub">Tap once. Dinner shows up.</p>
-       <button class="primary" data-goto="1">Handle my food</button>
-        <p class="fineprint">No setup. No memory. Nothing to keep up with.</p>
+
+        <div class="row">
+          <button class="primary" data-goto="1">Handle my food</button>
+          <button class="secondary" data-goto="1">Show me tonight</button>
+        </div>
+
+        <p class="fineprint">No account. No setup. Nothing to remember.</p>
       </div>
     </section>
 
-    <!-- SCREEN 1 -->
-    <section class="screen" data-screen="1">
+    <!-- SCREEN s1 -->
+    <section class="screen" data-screen="1" id="s1">
       <div class="card">
         <div class="pill">Tonight is handled</div>
         <h2 class="h2">Tonight</h2>
 
         <div class="todayBox">
-          <div class="mealTitle" id="mealTitle">Chicken & rice bowl</div>
-          <div class="mealMeta">≤15 minutes • low cleanup</div>
+          <div class="mealTitle" id="mealTitle">Yogurt + fruit + crunch</div>
+          <div class="mealMeta">≤15 minutes • ≤2 tools • low cleanup</div>
         </div>
 
         <div class="twoCol">
           <div class="mini">
             <div class="miniLabel">Do this</div>
             <ul class="miniList">
-              <li>Heat protein</li>
-              <li>Add rice</li>
-              <li>Add veg</li>
+              <li>Add yogurt</li>
+              <li>Add fruit</li>
+              <li>Add crunch</li>
               <li>Eat</li>
             </ul>
           </div>
+
           <div class="mini">
             <div class="miniLabel">Not this</div>
             <ul class="miniList">
               <li>No planning</li>
-              <li>No recipes</li>
-              <li>No prep</li>
-              <li>No decisions</li>
+              <li>No recipe hunting</li>
+              <li>No prep marathon</li>
+              <li>No spiral</li>
             </ul>
           </div>
         </div>
 
         <div class="navRow">
-          <button class="secondary" data-goto="2">What else?</button>
+          <button class="secondary" data-goto="2">See the meal set</button>
+          <button class="primary" data-goto="0">I’m good</button>
         </div>
 
         <div class="quietHint">You can stop here.</div>
       </div>
     </section>
 
-    <!-- SCREEN 2 -->
-    <section class="screen" data-screen="2">
+    <!-- SCREEN s2 -->
+    <section class="screen" data-screen="2" id="s2">
       <div class="card">
-        <div class="pill">Familiar & simple</div>
-        <h2 class="h2">What you’ll eat</h2>
-        <p class="sub">Familiar food.Minimal cleanup.Same effort.</p>
+        <div class="pill">Small set</div>
+        <h2 class="h2">The meal set</h2>
+        <p class="sub">Familiar food. Minimal cleanup. Same effort.</p>
 
         <div class="mealGrid">
           <div class="mealCard">
-            <div class="mealName">Chicken & rice bowl</div>
-            <div class="mealDesc">fast & filling</div>
+            <div class="mealName">Chicken &amp; rice bowl</div>
+            <div class="mealDesc">≤15 min • pan + bowl</div>
           </div>
+
           <div class="mealCard">
-            <div class="mealName">Egg & veggie scramble</div>
-            <div class="mealDesc">10 minutes</div>
+            <div class="mealName">Egg &amp; veggie scramble</div>
+            <div class="mealDesc">≤10 min • pan + plate</div>
           </div>
+
           <div class="mealCard">
-            <div class="mealName">Yogurt + fruit</div>
-            <div class="mealDesc">no cooking</div>
+            <div class="mealName">Yogurt + fruit + crunch</div>
+            <div class="mealDesc">≤2 min • bowl + spoon</div>
           </div>
         </div>
 
+        <div class="divider"></div>
+
+        <p class="muted">Ingredients repeat so shopping stays short.</p>
+
         <div class="navRow">
           <button class="secondary" data-goto="3">If I need to shop</button>
+          <button class="primary" data-goto="1">Back to tonight</button>
         </div>
 
         <div class="quietHint">You can stop here.</div>
       </div>
     </section>
 
-    <!-- SCREEN 3 -->
-    <section class="screen" data-screen="3">
+    <!-- SCREEN s3 -->
+    <section class="screen" data-screen="3" id="s3">
       <div class="card">
         <div class="pill">Optional</div>
         <h2 class="h2">What to buy</h2>
-        <p class="sub">Only if you want it.</p>
+        <p class="sub">Stays closed unless you open it.</p>
 
         <details class="accordion">
-          <summary>Open grocery list</summary>
-          <ul class="list">
-            <li>Rotisserie chicken</li>
-            <li>Microwave rice</li>
-            <li>Eggs</li>
-            <li>Frozen veggies</li>
-            <li>Greek yogurt</li>
-            <li>Fruit</li>
-          </ul>
+          <summary>Open grocery list (short)</summary>
+
+          <div class="panel">
+            <div class="panelTitle">Core (shows up more than once)</div>
+            <ul class="list">
+              <li>Rotisserie chicken (or frozen chicken strips)</li>
+              <li>Microwave rice packets (or pre-cooked rice)</li>
+              <li>Eggs</li>
+              <li>Frozen mixed veggies</li>
+              <li>Greek yogurt (plain or vanilla)</li>
+              <li>Bananas or berries</li>
+            </ul>
+
+            <div class="panelTitle">Quick add-ons (optional)</div>
+            <ul class="list">
+              <li>Salsa or hot sauce</li>
+              <li>Shredded cheese (optional)</li>
+              <li>Granola or nuts (for yogurt)</li>
+            </ul>
+
+            <div class="chipRow">
+              <span class="chip">~10 items</span>
+              <span class="chip">1 store</span>
+              <span class="chip">minimal waste</span>
+            </div>
+          </div>
         </details>
 
         <div class="finish">
-          <div class="finishTitle">That’s enough.</div>
+          <div class="finishTitle">That’s it.</div>
           <p class="finishText">Close the tab whenever.</p>
         </div>
 
+        <div class="navRow">
+          <button class="primary" data-goto="1">Handle my food</button>
+          <button class="secondary" id="copyLinkBtn" type="button">Copy link</button>
+        </div>
+
+        <button class="backLink" data-goto="2">Back</button>
         <div class="quietHint">You can stop here.</div>
       </div>
     </section>
 
     <footer class="footer">
-      <span class="footerText">v2.2 — calm by design</span>
+      <span class="footerText">Disposable UX prototype • hardcoded • GitHub Pages-ready</span>
     </footer>
   </main>
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Food, Handled</title>
-  <meta name="description" content="You don’t have to think about food this week." />
+  <meta name="description" content="You don’t have to think about food." />
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
@@ -19,33 +19,33 @@
         <span class="brandName">Food, Handled</span>
       </div>
 
-      <!-- Reset stays quiet + only appears after start -->
-      <button class="ghost" id="resetBtn" type="button" title="Start over" hidden>Start over</button>
+      <!-- Visible only after leaving the landing screen -->
+      <button class="ghost" id="startOverBtn" type="button" hidden>Start over</button>
     </header>
 
-    <!-- SCREEN 0 -->
+    <!-- SCREEN 0: Landing -->
     <section class="screen active" data-screen="0">
       <div class="card hero">
-        <h1 class="h1">You don’t have to think about food this week.</h1>
+        <h1 class="h1">You don’t have to think about food.</h1>
         <p class="sub">Tap once. Dinner shows up.</p>
 
         <div class="ctaRow">
-          <button class="primary" id="handleBtn" type="button">Handle my food</button>
+          <button class="primary" id="primaryHandleBtn" type="button">Handle my food</button>
         </div>
 
         <p class="fineprint">No account. No setup. Nothing to remember.</p>
       </div>
     </section>
 
-    <!-- SCREEN 1 -->
+    <!-- SCREEN 1: Tonight -->
     <section class="screen" data-screen="1">
       <div class="card">
         <div class="pill">Tonight is handled</div>
-        <h2 class="h2">Tonight’s dinner</h2>
+        <h2 class="h2">Tonight</h2>
 
         <div class="todayBox">
           <div class="mealTitle" id="tonightMeal">Chicken & rice bowl</div>
-          <div class="mealMeta" id="tonightMeta">~12 minutes • one pan • low cleanup</div>
+          <div class="mealMeta" id="tonightMeta">≤15 minutes • ≤2 tools • low cleanup</div>
         </div>
 
         <div class="twoCol">
@@ -69,62 +69,65 @@
           </div>
         </div>
 
+        <!-- Non-linear choices (no sequence language) -->
         <div class="navRow">
-          <button class="secondary" data-next="2" type="button">Show the rest</button>
+          <button class="secondary" data-goto="2" type="button">See the meal set</button>
         </div>
 
+        <!-- Primary action is always the same -->
         <div class="stickyCta">
-          <button class="primary" data-next="2" type="button">Keep it handled</button>
+          <button class="primary" data-action="handle" type="button">Handle my food</button>
         </div>
+
+        <div class="quietHint">You can stop here.</div>
       </div>
     </section>
 
-    <!-- SCREEN 2 -->
+    <!-- SCREEN 2: Meal set -->
     <section class="screen" data-screen="2">
       <div class="card">
         <div class="pill">Small set</div>
-        <h2 class="h2">You’ll rotate between these</h2>
-        <p class="sub">Familiar food. Minimal cleanup. Same shape every week.</p>
+        <h2 class="h2">The meal set</h2>
+        <p class="sub">Familiar food. Minimal cleanup. Same shape every time.</p>
 
         <div class="mealGrid">
           <div class="mealCard">
             <div class="mealName">Chicken & rice bowl</div>
-            <div class="mealDesc">fast + filling</div>
+            <div class="mealDesc">≤15 min • pan + bowl</div>
           </div>
           <div class="mealCard">
             <div class="mealName">Egg & veggie scramble</div>
-            <div class="mealDesc">10 minutes</div>
+            <div class="mealDesc">≤10 min • pan + plate</div>
           </div>
           <div class="mealCard">
             <div class="mealName">Yogurt + fruit + crunch</div>
-            <div class="mealDesc">no cook</div>
+            <div class="mealDesc">≤2 min • bowl + spoon</div>
           </div>
         </div>
 
         <div class="divider"></div>
 
-        <p class="microText">
-          Ingredients repeat on purpose — so shopping stays short and your brain stays off.
-        </p>
+        <p class="microText">Ingredients repeat so shopping stays short.</p>
 
         <div class="navRow">
-          <button class="secondary" data-next="3" type="button">If I need to shop</button>
+          <button class="secondary" data-goto="3" type="button">If I need to shop</button>
         </div>
 
         <div class="stickyCta">
-          <button class="primary" data-next="3" type="button">Show what to buy</button>
+          <button class="primary" data-action="handle" type="button">Handle my food</button>
         </div>
+
+        <div class="quietHint">You can stop here.</div>
       </div>
     </section>
 
-    <!-- SCREEN 3 -->
+    <!-- SCREEN 3: What to buy -->
     <section class="screen" data-screen="3">
       <div class="card">
         <div class="pill">Optional</div>
         <h2 class="h2">What to buy</h2>
-        <p class="sub">This stays closed unless you open it.</p>
+        <p class="sub">Stays closed unless you open it.</p>
 
-        <!-- Collapsed by default (fixed) -->
         <details class="accordion">
           <summary>Open grocery list (short)</summary>
           <div class="listWrap">
@@ -160,18 +163,20 @@
         <div class="divider"></div>
 
         <div class="finish">
-          <div class="finishTitle">Done.</div>
-          <p class="finishText">Close this tab. Come back anytime. Same deal.</p>
+          <div class="finishTitle">That’s it.</div>
+          <p class="finishText">Close the tab whenever.</p>
         </div>
 
         <div class="ctaRow">
-          <button class="primary" id="againBtn" type="button">Handle my food</button>
+          <button class="primary" data-action="handle" type="button">Handle my food</button>
           <button class="secondary" id="copyLinkBtn" type="button">Copy link</button>
         </div>
 
         <div class="quietRow">
-          <button class="ghost" id="backToMealsBtn" type="button">Back</button>
+          <button class="ghost" data-goto="2" type="button">Back</button>
         </div>
+
+        <div class="quietHint">You can stop here.</div>
       </div>
     </section>
 

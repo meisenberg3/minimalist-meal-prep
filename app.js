@@ -1,16 +1,33 @@
 (function(){
   const screens = Array.from(document.querySelectorAll(".screen"));
-  const handleBtn = document.getElementById("handleBtn");
-  const resetBtn = document.getElementById("resetBtn");
-  const againBtn = document.getElementById("againBtn");
+  const primaryHandleBtn = document.getElementById("primaryHandleBtn");
+  const startOverBtn = document.getElementById("startOverBtn");
   const copyLinkBtn = document.getElementById("copyLinkBtn");
-  const backToMealsBtn = document.getElementById("backToMealsBtn");
 
-  // Hardcoded "tonight" rotation (still disposable)
+  // Invisible constraint enforcement: <=15 minutes + <=2 tools
+  // (We don't explain it. We just keep the UI consistent.)
   const meals = [
-    { title: "Chicken & rice bowl", meta: "~12 minutes • one pan • low cleanup" },
-    { title: "Egg & veggie scramble", meta: "~10 minutes • one pan • low cleanup" },
-    { title: "Yogurt + fruit + crunch", meta: "~2 minutes • no cook • zero effort" }
+    {
+      title: "Chicken & rice bowl",
+      meta: "≤15 minutes • ≤2 tools • low cleanup",
+      steps: ["Heat protein", "Add rice", "Throw in veg", "Eat"],
+      tools: ["Pan", "Bowl"],
+      minutes: 12
+    },
+    {
+      title: "Egg & veggie scramble",
+      meta: "≤15 minutes • ≤2 tools • low cleanup",
+      steps: ["Heat pan", "Scramble eggs", "Add veg", "Eat"],
+      tools: ["Pan", "Plate"],
+      minutes: 10
+    },
+    {
+      title: "Yogurt + fruit + crunch",
+      meta: "≤15 minutes • ≤2 tools • low cleanup",
+      steps: ["Add yogurt", "Add fruit", "Add crunch", "Eat"],
+      tools: ["Bowl", "Spoon"],
+      minutes: 2
+    }
   ];
 
   function pickTonight(){
@@ -20,15 +37,26 @@
 
   function hydrateTonight(){
     const tonight = pickTonight();
+
     const mealTitle = document.getElementById("tonightMeal");
-    const mealMeta = document.getElementById("tonightMeta");
+    const mealMeta  = document.getElementById("tonightMeta");
+
     if(mealTitle) mealTitle.textContent = tonight.title;
-    if(mealMeta) mealMeta.textContent = tonight.meta;
+    if(mealMeta)  mealMeta.textContent  = tonight.meta;
+
+    // Keep "Do this" aligned with tonight (non-essential, but consistent)
+    const doList = document.querySelectorAll('[data-screen="1"] .miniList')[0];
+    if(doList){
+      doList.innerHTML = tonight.steps.map(s => `<li>${s}</li>`).join("");
+    }
+
+    // (Not shown, but we enforce constraints by choosing meals that comply.)
+    // If you add meals later, keep: minutes <= 15 and tools.length <= 2.
   }
 
-  function setResetVisibility(screenIndex){
-    if(!resetBtn) return;
-    resetBtn.hidden = (screenIndex === 0);
+  function setStartOverVisibility(screenIndex){
+    if(!startOverBtn) return;
+    startOverBtn.hidden = (screenIndex === 0);
   }
 
   function goTo(i){
@@ -36,33 +64,40 @@
     const next = screens.find(s => Number(s.dataset.screen) === i);
     if(next) next.classList.add("active");
 
-    setResetVisibility(i);
+    setStartOverVisibility(i);
 
-    // keep hash for shareability, but default return still starts fresh
+    // Keep shareable hash, but return behavior stays calm
     window.location.hash = `#s${i}`;
   }
 
-  // Primary action always works the same
   function handleMyFood(){
     hydrateTonight();
     goTo(1);
   }
 
-  // Wiring
-  handleBtn?.addEventListener("click", handleMyFood);
-  againBtn?.addEventListener("click", handleMyFood);
+  // Primary CTA (landing)
+  primaryHandleBtn?.addEventListener("click", handleMyFood);
 
+  // Any element can invoke the same primary behavior
   document.addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-next]");
-    if(!btn) return;
-    const next = Number(btn.getAttribute("data-next"));
-    if(!Number.isNaN(next)) goTo(next);
+    const actionBtn = e.target.closest("[data-action]");
+    if(actionBtn && actionBtn.getAttribute("data-action") === "handle"){
+      handleMyFood();
+      return;
+    }
+
+    const gotoBtn = e.target.closest("[data-goto]");
+    if(gotoBtn){
+      const target = Number(gotoBtn.getAttribute("data-goto"));
+      if(!Number.isNaN(target)) goTo(target);
+      return;
+    }
   });
 
-  resetBtn?.addEventListener("click", () => goTo(0));
+  // Start over = calm return, no guilt
+  startOverBtn?.addEventListener("click", () => goTo(0));
 
-  backToMealsBtn?.addEventListener("click", () => goTo(2));
-
+  // Copy link
   copyLinkBtn?.addEventListener("click", async () => {
     try{
       const url = window.location.href;
@@ -75,7 +110,7 @@
     }
   });
 
-  // Optional: allow space/enter to run primary action on landing (less thinking)
+  // Keyboard: Enter/Space on landing runs primary action; Esc returns to calm
   document.addEventListener("keydown", (e) => {
     const active = screens.find(s => s.classList.contains("active"));
     if(!active) return;
@@ -85,13 +120,12 @@
       e.preventDefault();
       handleMyFood();
     }
-
     if(e.key === "Escape"){
       goTo(0);
     }
   });
 
-  // Boot (respect hash for share links; otherwise always start calm at 0)
+  // Boot: respect share hash if present, otherwise always start calm
   function boot(){
     const m = window.location.hash.match(/#s(\d+)/);
     if(m){

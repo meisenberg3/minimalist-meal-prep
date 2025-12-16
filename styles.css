@@ -92,6 +92,7 @@ button{ border:0; cursor:pointer; font:inherit; }
 }
 
 .hero{ padding: 28px; }
+
 .h1{
   margin:0 0 10px;
   font-size: clamp(28px, 3.2vw, 44px);
@@ -103,6 +104,7 @@ button{ border:0; cursor:pointer; font:inherit; }
   font-size: clamp(20px, 2.2vw, 28px);
   letter-spacing:-.2px;
 }
+
 .sub{
   margin:0 0 18px;
   color: var(--muted);
@@ -127,7 +129,7 @@ button{ border:0; cursor:pointer; font:inherit; }
   color: rgba(0,0,0,.86);
   padding: 12px 16px;
   border-radius: 14px;
-  font-weight: 700;
+  font-weight: 750;
   box-shadow: 0 10px 30px rgba(120,255,210,.18);
   transition: transform .18s var(--ease);
 }
@@ -166,7 +168,7 @@ button{ border:0; cursor:pointer; font:inherit; }
 }
 .mealTitle{
   font-size: 18px;
-  font-weight: 750;
+  font-weight: 800;
   letter-spacing:-.2px;
 }
 .mealMeta{
@@ -193,7 +195,7 @@ button{ border:0; cursor:pointer; font:inherit; }
 }
 .miniLabel{
   color: rgba(255,255,255,.80);
-  font-weight: 700;
+  font-weight: 750;
   font-size: 13px;
   margin-bottom: 10px;
 }
@@ -226,7 +228,7 @@ button{ border:0; cursor:pointer; font:inherit; }
   background: rgba(255,255,255,.03);
   border: 1px solid rgba(255,255,255,.10);
 }
-.mealName{ font-weight: 750; letter-spacing:-.2px; }
+.mealName{ font-weight: 800; letter-spacing:-.2px; }
 .mealDesc{
   margin-top:6px;
   color: var(--muted);
@@ -256,13 +258,13 @@ button{ border:0; cursor:pointer; font:inherit; }
   cursor:pointer;
   list-style:none;
   padding: 14px 14px;
-  font-weight: 750;
+  font-weight: 800;
 }
 .accordion summary::-webkit-details-marker{ display:none; }
 .listWrap{ padding: 0 14px 14px; }
 .listSection{ margin-top: 10px; }
 .listHdr{
-  font-weight: 750;
+  font-weight: 800;
   color: rgba(255,255,255,.82);
   margin-bottom: 6px;
   font-size: 13.5px;
@@ -287,11 +289,11 @@ button{ border:0; cursor:pointer; font:inherit; }
   background: rgba(0,0,0,.14);
   color: rgba(255,255,255,.72);
   font-size: 12.5px;
-  font-weight: 650;
+  font-weight: 700;
 }
 
 .finishTitle{
-  font-weight: 850;
+  font-weight: 900;
   letter-spacing:-.2px;
   font-size: 16px;
 }
@@ -303,6 +305,12 @@ button{ border:0; cursor:pointer; font:inherit; }
 
 .quietRow{ margin-top: 10px; }
 
+.quietHint{
+  margin-top: 14px;
+  color: rgba(255,255,255,.38);
+  font-size: 12.5px;
+}
+
 .footer{
   margin-top:auto;
   padding: 6px 4px 14px;
@@ -312,16 +320,13 @@ button{ border:0; cursor:pointer; font:inherit; }
   font-size: 12.5px;
 }
 
-/* Sticky single primary action (shows safety: "one tap still works") */
+/* Primary action always available, but not loud */
 .stickyCta{
   position: sticky;
   bottom: 12px;
   display:flex;
   justify-content:flex-end;
   margin-top: 18px;
-}
-.stickyCta .primary{
-  width: auto;
 }
 
 /* Screens */

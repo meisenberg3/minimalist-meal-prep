@@ -14,38 +14,32 @@
 
   <main class="app" aria-live="polite">
     <header class="topbar">
-      <div class="brand" aria-label="Prototype brand">
+      <div class="brand">
         <span class="dot"></span>
         <span class="brandName">Food, Handled</span>
       </div>
-
-      <!-- Visible only after leaving the landing screen -->
-      <button class="ghost" id="startOverBtn" type="button" hidden>Start over</button>
+      <button class="ghost" id="startOverBtn" hidden>Start over</button>
     </header>
 
-    <!-- SCREEN 0: Landing -->
+    <!-- SCREEN 0 -->
     <section class="screen active" data-screen="0">
       <div class="card hero">
         <h1 class="h1">You don’t have to think about food.</h1>
         <p class="sub">Tap once. Dinner shows up.</p>
-
-        <div class="ctaRow">
-          <button class="primary" id="primaryHandleBtn" type="button">Handle my food</button>
-        </div>
-
-        <p class="fineprint">No account. No setup. Nothing to remember.</p>
+        <button class="primary" id="handleBtn">Handle my food</button>
+        <p class="fineprint">No setup. No memory. Nothing to keep up with.</p>
       </div>
     </section>
 
-    <!-- SCREEN 1: Tonight -->
+    <!-- SCREEN 1 -->
     <section class="screen" data-screen="1">
       <div class="card">
         <div class="pill">Tonight is handled</div>
         <h2 class="h2">Tonight</h2>
 
         <div class="todayBox">
-          <div class="mealTitle" id="tonightMeal">Chicken & rice bowl</div>
-          <div class="mealMeta" id="tonightMeta">≤15 minutes • ≤2 tools • low cleanup</div>
+          <div class="mealTitle" id="mealTitle">Chicken & rice bowl</div>
+          <div class="mealMeta">≤15 minutes • low cleanup</div>
         </div>
 
         <div class="twoCol">
@@ -54,7 +48,7 @@
             <ul class="miniList">
               <li>Heat protein</li>
               <li>Add rice</li>
-              <li>Throw in veg</li>
+              <li>Add veg</li>
               <li>Eat</li>
             </ul>
           </div>
@@ -62,118 +56,73 @@
             <div class="miniLabel">Not this</div>
             <ul class="miniList">
               <li>No planning</li>
-              <li>No recipe hunting</li>
-              <li>No prep marathon</li>
-              <li>No spiral</li>
+              <li>No recipes</li>
+              <li>No prep</li>
+              <li>No decisions</li>
             </ul>
           </div>
         </div>
 
-        <!-- Non-linear choices (no sequence language) -->
         <div class="navRow">
-          <button class="secondary" data-goto="2" type="button">See the meal set</button>
-        </div>
-
-        <!-- Primary action is always the same -->
-        <div class="stickyCta">
-          <button class="primary" data-action="handle" type="button">Handle my food</button>
+          <button class="secondary" data-goto="2">What else?</button>
         </div>
 
         <div class="quietHint">You can stop here.</div>
       </div>
     </section>
 
-    <!-- SCREEN 2: Meal set -->
+    <!-- SCREEN 2 -->
     <section class="screen" data-screen="2">
       <div class="card">
-        <div class="pill">Small set</div>
-        <h2 class="h2">The meal set</h2>
-        <p class="sub">Familiar food. Minimal cleanup. Same shape every time.</p>
+        <div class="pill">Familiar & simple</div>
+        <h2 class="h2">What you’ll eat</h2>
+        <p class="sub">Familiar food. Same effort.</p>
 
         <div class="mealGrid">
           <div class="mealCard">
             <div class="mealName">Chicken & rice bowl</div>
-            <div class="mealDesc">≤15 min • pan + bowl</div>
+            <div class="mealDesc">fast & filling</div>
           </div>
           <div class="mealCard">
             <div class="mealName">Egg & veggie scramble</div>
-            <div class="mealDesc">≤10 min • pan + plate</div>
+            <div class="mealDesc">10 minutes</div>
           </div>
           <div class="mealCard">
-            <div class="mealName">Yogurt + fruit + crunch</div>
-            <div class="mealDesc">≤2 min • bowl + spoon</div>
+            <div class="mealName">Yogurt + fruit</div>
+            <div class="mealDesc">no cooking</div>
           </div>
         </div>
 
-        <div class="divider"></div>
-
-        <p class="microText">Ingredients repeat so shopping stays short.</p>
-
         <div class="navRow">
-          <button class="secondary" data-goto="3" type="button">If I need to shop</button>
-        </div>
-
-        <div class="stickyCta">
-          <button class="primary" data-action="handle" type="button">Handle my food</button>
+          <button class="secondary" data-goto="3">If I need to shop</button>
         </div>
 
         <div class="quietHint">You can stop here.</div>
       </div>
     </section>
 
-    <!-- SCREEN 3: What to buy -->
+    <!-- SCREEN 3 -->
     <section class="screen" data-screen="3">
       <div class="card">
         <div class="pill">Optional</div>
         <h2 class="h2">What to buy</h2>
-        <p class="sub">Stays closed unless you open it.</p>
+        <p class="sub">Only if you want it.</p>
 
         <details class="accordion">
-          <summary>Open grocery list (short)</summary>
-          <div class="listWrap">
-            <div class="listSection">
-              <div class="listHdr">Core (shows up more than once)</div>
-              <ul class="list">
-                <li>Rotisserie chicken (or frozen chicken strips)</li>
-                <li>Microwave rice packets (or pre-cooked rice)</li>
-                <li>Eggs</li>
-                <li>Frozen mixed veggies</li>
-                <li>Greek yogurt (plain or vanilla)</li>
-                <li>Bananas or berries</li>
-              </ul>
-            </div>
-
-            <div class="listSection">
-              <div class="listHdr">Quick add-ons (optional)</div>
-              <ul class="list">
-                <li>Salsa or hot sauce</li>
-                <li>Shredded cheese (optional)</li>
-                <li>Granola or nuts (for yogurt)</li>
-              </ul>
-            </div>
-
-            <div class="tagRow">
-              <span class="tag">~10 items</span>
-              <span class="tag">1 store</span>
-              <span class="tag">minimal waste</span>
-            </div>
-          </div>
+          <summary>Open grocery list</summary>
+          <ul class="list">
+            <li>Rotisserie chicken</li>
+            <li>Microwave rice</li>
+            <li>Eggs</li>
+            <li>Frozen veggies</li>
+            <li>Greek yogurt</li>
+            <li>Fruit</li>
+          </ul>
         </details>
 
-        <div class="divider"></div>
-
         <div class="finish">
-          <div class="finishTitle">That’s it.</div>
+          <div class="finishTitle">That’s enough.</div>
           <p class="finishText">Close the tab whenever.</p>
-        </div>
-
-        <div class="ctaRow">
-          <button class="primary" data-action="handle" type="button">Handle my food</button>
-          <button class="secondary" id="copyLinkBtn" type="button">Copy link</button>
-        </div>
-
-        <div class="quietRow">
-          <button class="ghost" data-goto="2" type="button">Back</button>
         </div>
 
         <div class="quietHint">You can stop here.</div>
@@ -181,7 +130,7 @@
     </section>
 
     <footer class="footer">
-      <span class="footerText">Disposable UX prototype • hardcoded • GitHub Pages-ready</span>
+      <span class="footerText">v2.2 — calm by design</span>
     </footer>
   </main>
 

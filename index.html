@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Food, Handled</title>
   <meta name="description" content="You don’t have to think about food." />
+
+  <!-- PWA -->
+  <meta name="theme-color" content="#08110e" />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" href="./icons/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./icons/icon.svg" />
+
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
@@ -46,13 +53,13 @@
 
         <div class="todayBox">
           <div class="mealTitle" id="mealTitle">Yogurt + fruit + crunch</div>
-          <div class="mealMeta">≤15 minutes • ≤2 tools • low cleanup</div>
+          <div class="mealMeta" id="mealMeta">≤15 minutes • ≤2 tools • low cleanup</div>
         </div>
 
         <div class="twoCol">
           <div class="mini">
             <div class="miniLabel">Do this</div>
-            <ul class="miniList">
+            <ul class="miniList" id="doList">
               <li>Add yogurt</li>
               <li>Add fruit</li>
               <li>Add crunch</li>
@@ -169,7 +176,8 @@
     </section>
 
     <footer class="footer">
-      <span class="footerText">Disposable UX prototype • hardcoded • GitHub Pages-ready</span>
+      <div class="footerText">Nothing to remember. Nothing to keep up with.</div>
+      <div class="footerText2">Disposable UX prototype • hardcoded • GitHub Pages-ready</div>
     </footer>
   </main>
 

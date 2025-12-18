@@ -1,0 +1,18 @@
+{
+  "name": "Food, Handled",
+  "short_name": "FoodHandled",
+  "description": "A calm tool that handles food decisions so you don’t have to think about them.",
+  "start_url": "./#s0",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#08110e",
+  "theme_color": "#08110e",
+  "icons": [
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -2,7 +2,6 @@
   --bg0:#08110e;
   --bg1:#0b1713;
   --card: rgba(255,255,255,.06);
-  --card2: rgba(255,255,255,.04);
   --stroke: rgba(255,255,255,.10);
   --stroke2: rgba(255,255,255,.08);
   --ink: rgba(255,255,255,.92);
@@ -77,9 +76,7 @@ body{
   backdrop-filter: blur(10px);
 }
 
-.hero{
-  padding: 28px 22px;
-}
+.hero{ padding: 28px 22px; }
 
 .h1{
   font-size: 38px;
@@ -142,6 +139,9 @@ button{
   border-radius: 999px;
   font-weight: 700;
 }
+
+/* Hidden on Home; shown after leaving via JS */
+#startOverBtn{ visibility: hidden; }
 
 .fineprint{
   margin: 6px 0 0;
@@ -331,8 +331,16 @@ button{
 .footer{
   margin: 18px 4px 0;
   text-align:center;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
 }
 .footerText{
-  color: rgba(255,255,255,.38);
+  color: rgba(255,255,255,.55);
+  font-size: 12.8px;
+  font-weight: 700;
+}
+.footerText2{
+  color: rgba(255,255,255,.35);
   font-size: 12.5px;
 }

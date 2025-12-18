@@ -1,54 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Food, Handled</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Food, Handled — v2.3</title>
 
   <style>
     :root{
-      --bg1:#0b1412;
-      --bg2:#0f1b18;
+      --bg0:#07110d;
+      --bg1:#0b1914;
       --card:rgba(255,255,255,.06);
-      --card2:rgba(255,255,255,.04);
       --stroke:rgba(255,255,255,.10);
-      --ink:#eaf3ef;
-      --muted:rgba(234,243,239,.72);
-      --muted2:rgba(234,243,239,.55);
-      --pill:rgba(95, 255, 196,.16);
-      --green:#37e2a3;
-      --green2:#29c98e;
-      --shadow: 0 18px 60px rgba(0,0,0,.55);
-      --radius: 26px;
+      --ink:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.66);
+      --muted2:rgba(255,255,255,.52);
+      --pill:rgba(56, 255, 186, .10);
+      --mint1:#34f5b0;
+      --mint2:#21d6a4;
+      --shadow:0 22px 60px rgba(0,0,0,.55);
+      --radius:28px;
     }
 
     *{ box-sizing:border-box; }
-    html, body{ height:100%; }
+    html,body{ height:100%; }
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color:var(--ink);
       background:
-        radial-gradient(1200px 700px at 40% 20%, rgba(55,226,163,.18) 0%, rgba(55,226,163,0) 55%),
-        radial-gradient(900px 600px at 75% 60%, rgba(55,226,163,.10) 0%, rgba(55,226,163,0) 55%),
-        linear-gradient(160deg, var(--bg2), var(--bg1));
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
-      padding: 18px 14px 26px;
+        radial-gradient(900px 700px at 20% 10%, rgba(52,245,176,.18), transparent 55%),
+        radial-gradient(800px 600px at 80% 30%, rgba(52,245,176,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      min-height:100%;
     }
 
-    .shell{
-      width:min(920px, 100%);
-      padding-top: 8px;
+    .wrap{
+      max-width:520px;
+      margin:0 auto;
+      padding:28px 16px 40px;
     }
 
-    .topbar{
+    .top{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
-      margin: 6px 6px 14px;
+      margin-bottom:18px;
     }
 
     .brand{
@@ -58,716 +54,750 @@
       font-weight:700;
       letter-spacing:.2px;
     }
+
     .dot{
-      width:12px; height:12px; border-radius:999px;
-      background: var(--green);
-      box-shadow: 0 0 0 6px rgba(55,226,163,.10);
-      opacity:.95;
+      width:12px; height:12px; border-radius:99px;
+      background:rgba(52,245,176,.80);
+      box-shadow:0 0 0 6px rgba(52,245,176,.12);
     }
 
-    .linkBtn{
-      appearance:none;
-      background: transparent;
-      border: 1px solid var(--stroke);
-      color: var(--muted);
-      padding: 9px 12px;
-      border-radius: 999px;
-      font-weight:650;
-      cursor:pointer;
+    .ghostLink{
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:600;
+      padding:10px 12px;
+      border:1px solid var(--stroke);
+      border-radius:999px;
+      background:rgba(255,255,255,.03);
     }
-    .linkBtn:hover{ border-color: rgba(255,255,255,.18); color: var(--ink); }
+    .ghostLink:active{ transform:translateY(1px); }
 
     .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.04));
-      border: 1px solid var(--stroke);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 18px;
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.05));
+      border:1px solid var(--stroke);
+      box-shadow:var(--shadow);
+      padding:20px;
+      position:relative;
       overflow:hidden;
-    }
-
-    .wrap{
-      max-width: 520px;
-      margin: 0 auto;
     }
 
     .pill{
       display:inline-flex;
       align-items:center;
       gap:8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: var(--pill);
-      border: 1px solid rgba(55,226,163,.22);
-      color: rgba(234,243,239,.88);
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing:.2px;
-      margin-bottom: 10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:var(--pill);
+      border:1px solid rgba(52,245,176,.18);
+      color:rgba(255,255,255,.82);
+      font-weight:650;
+      font-size:13px;
+      margin-bottom:10px;
     }
 
     h1{
-      font-size: 44px;
-      line-height: 1.02;
-      margin: 6px 0 8px;
-      letter-spacing: -1px;
+      font-size:44px;
+      line-height:1.05;
+      margin:0 0 10px;
+      letter-spacing:-.6px;
     }
+
     h2{
-      font-size: 30px;
-      line-height: 1.08;
-      margin: 6px 0 8px;
-      letter-spacing: -.6px;
+      font-size:34px;
+      line-height:1.08;
+      margin:0 0 10px;
+      letter-spacing:-.4px;
     }
 
     .sub{
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.45;
-      margin: 0 0 14px;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.45;
+      margin:0 0 16px;
     }
 
-    .btnRow{
+    .row{
       display:flex;
-      gap:10px;
+      gap:12px;
       flex-wrap:wrap;
-      margin-top: 14px;
+      align-items:center;
     }
 
-    .btnPrimary{
-      appearance:none;
-      border: none;
-      background: linear-gradient(135deg, var(--green), var(--green2));
-      color: #072016;
-      font-weight: 900;
-      padding: 14px 18px;
-      border-radius: 16px;
+    .btn{
+      border:0;
       cursor:pointer;
-      box-shadow: 0 14px 30px rgba(55,226,163,.18);
-      min-width: 210px;
+      border-radius:999px;
+      padding:14px 18px;
+      font-weight:800;
+      font-size:16px;
+      color:#052016;
+      background:linear-gradient(180deg, var(--mint1), var(--mint2));
+      box-shadow:0 14px 40px rgba(52,245,176,.18);
+      min-width:180px;
     }
-    .btnPrimary:active{ transform: translateY(1px); }
+    .btn:active{ transform:translateY(1px); }
 
-    .btnGhost{
-      appearance:none;
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.03);
-      color: var(--ink);
-      font-weight: 850;
-      padding: 14px 18px;
-      border-radius: 16px;
+    .btn2{
+      border:1px solid var(--stroke);
       cursor:pointer;
-      min-width: 210px;
+      border-radius:999px;
+      padding:14px 18px;
+      font-weight:800;
+      font-size:16px;
+      color:var(--ink);
+      background:rgba(255,255,255,.04);
+      min-width:180px;
     }
+    .btn2:active{ transform:translateY(1px); }
 
     .btnSmall{
-      appearance:none;
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.03);
-      color: var(--ink);
-      font-weight: 800;
-      padding: 12px 14px;
-      border-radius: 16px;
+      border:1px solid var(--stroke);
       cursor:pointer;
+      border-radius:999px;
+      padding:10px 14px;
+      font-weight:800;
+      font-size:14px;
+      color:var(--ink);
+      background:rgba(255,255,255,.04);
     }
 
-    .hint{
-      color: var(--muted2);
-      font-size: 14px;
-      margin-top: 10px;
+    .fine{
+      color:var(--muted2);
+      font-size:14px;
+      margin-top:12px;
     }
 
-    .section{
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(255,255,255,.08);
+    .stack{ margin-top:14px; display:flex; flex-direction:column; gap:12px; }
+
+    .item{
+      padding:16px 16px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.12);
+    }
+    .itemTitle{
+      font-weight:900;
+      font-size:18px;
+      margin:0 0 6px;
+      letter-spacing:-.2px;
+    }
+    .itemMeta{
+      color:var(--muted);
+      font-weight:650;
+      margin:0;
     }
 
-    .choiceList{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      margin: 12px 0 0;
-    }
-
-    .choice{
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      border-radius: 18px;
-      padding: 14px 14px;
-    }
-    .choiceTitle{
-      font-weight: 900;
-      font-size: 18px;
-      margin-bottom: 4px;
-    }
-    .choiceMeta{
-      color: var(--muted);
-      font-weight: 700;
-      letter-spacing:.1px;
+    .divider{
+      height:1px;
+      background:rgba(255,255,255,.08);
+      margin:14px 0;
     }
 
     .twoCol{
       display:grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin-top: 12px;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:12px;
     }
-    @media (min-width: 760px){
-      .wrap{ max-width: 560px; }
-      .twoCol{ grid-template-columns: 1fr 1fr; }
+    @media (max-width:520px){
+      h1{ font-size:40px; }
+      .twoCol{ grid-template-columns:1fr; }
+      .btn,.btn2{ width:100%; min-width:unset; }
     }
 
-    .panel{
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      border-radius: 18px;
-      padding: 14px;
-      min-height: 120px;
-    }
-    .panel h3{
-      margin: 0 0 8px;
-      font-size: 15px;
-      color: rgba(234,243,239,.88);
-      letter-spacing:.2px;
-      text-transform: none;
-    }
     ul{
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
-      line-height: 1.55;
-      font-weight: 650;
-    }
-
-    details{
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      border-radius: 18px;
-      padding: 12px 14px;
-    }
-    summary{
-      list-style:none;
-      cursor:pointer;
-      font-weight: 900;
-      font-size: 16px;
-    }
-    summary::-webkit-details-marker{ display:none; }
-    .detailsBody{
-      margin-top: 10px;
-      color: var(--muted);
-      font-weight: 650;
-      line-height: 1.6;
+      margin:10px 0 0;
+      padding-left:18px;
+      color:var(--muted);
+      line-height:1.55;
+      font-weight:650;
     }
 
     .tags{
       display:flex;
-      gap:8px;
+      gap:10px;
       flex-wrap:wrap;
-      margin-top: 10px;
+      margin-top:12px;
     }
     .tag{
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      color: rgba(234,243,239,.76);
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-weight: 850;
-      font-size: 13px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      color:rgba(255,255,255,.78);
+      font-weight:800;
+      font-size:13px;
     }
 
-    .footerNote{
+    .footer{
+      margin-top:18px;
       text-align:center;
-      color: rgba(234,243,239,.40);
-      font-weight: 700;
-      margin-top: 14px;
-      font-size: 13px;
-      letter-spacing:.2px;
+      color:rgba(255,255,255,.40);
+      font-weight:650;
+      font-size:13px;
     }
 
-    .hidden{ display:none !important; }
+    /* simple page system */
+    .page{ display:none; }
+    .page.active{ display:block; }
+
+    /* accordion */
+    .accordionBtn{
+      width:100%;
+      text-align:left;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      color:var(--ink);
+      border-radius:22px;
+      padding:16px 16px;
+      font-weight:900;
+      font-size:16px;
+      cursor:pointer;
+    }
+    .accordionContent{
+      display:none;
+      border:1px solid rgba(255,255,255,.08);
+      border-top:0;
+      background:rgba(0,0,0,.10);
+      border-radius:0 0 22px 22px;
+      padding:14px 16px 16px;
+      margin-top:-10px;
+    }
+    .accordionContent.show{ display:block; }
+
+    .danger{
+      color:rgba(255,255,255,.72);
+      font-weight:800;
+      font-size:14px;
+    }
   </style>
 </head>
 
 <body>
-  <div class="shell">
-    <div class="topbar">
-      <div class="brand"><span class="dot"></span> Food, Handled</div>
-      <button class="linkBtn" id="btnResetTop">Start over</button>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand"><span class="dot"></span><span>Food, Handled</span></div>
+      <a class="ghostLink" href="#s0" id="startOver">Start over</a>
     </div>
 
-    <div class="wrap">
-      <!-- S0 -->
-      <section class="card" id="s0">
+    <!-- S0 -->
+    <section class="page" id="s0">
+      <div class="card">
         <h1>You don’t have to think about food.</h1>
         <p class="sub">Tap once. Dinner shows up.</p>
 
-        <div class="btnRow">
-          <button class="btnPrimary" id="btnHandle">Handle my food</button>
-          <button class="btnGhost" id="btnShowTonight">Show me tonight</button>
+        <div class="row" style="margin-top:10px;">
+          <button class="btn" id="handleBtn">Handle my food</button>
+          <button class="btn2" id="showTonightBtn">Show me tonight</button>
         </div>
 
-        <p class="hint">No account. No setup. Nothing to remember.</p>
-      </section>
+        <p class="fine">No account. No setup. Nothing to remember.</p>
 
-      <!-- S1 Tonight -->
-      <section class="card hidden" id="s1">
+        <div class="divider"></div>
+
+        <div class="row">
+          <button class="btnSmall" id="rechooseFromHome">Rechoose my meals</button>
+          <span class="danger" id="setStatus"></span>
+        </div>
+      </div>
+
+      <div class="footer">v2.3 — calm by design</div>
+    </section>
+
+    <!-- S1 Tonight -->
+    <section class="page" id="s1">
+      <div class="card">
         <div class="pill">Tonight is handled</div>
         <h2>Tonight</h2>
 
-        <div class="choice" id="tonightCard">
-          <div class="choiceTitle" id="tonightTitle">—</div>
-          <div class="choiceMeta" id="tonightMeta">—</div>
+        <div class="item" id="tonightCard">
+          <!-- filled by JS -->
         </div>
 
         <div class="twoCol">
-          <div class="panel">
-            <h3>Do this</h3>
-            <ul id="tonightDo"></ul>
+          <div class="item">
+            <p class="itemTitle" style="margin-bottom:10px;">Do this</p>
+            <ul id="doThis"></ul>
           </div>
-          <div class="panel">
-            <h3>Not this</h3>
-            <ul id="tonightNot"></ul>
+          <div class="item">
+            <p class="itemTitle" style="margin-bottom:10px;">Not this</p>
+            <ul>
+              <li>No planning</li>
+              <li>No recipe hunting</li>
+              <li>No prep marathon</li>
+              <li>No spiral</li>
+            </ul>
           </div>
         </div>
 
-        <div class="btnRow">
-          <button class="btnSmall" id="btnSeeSet">See the meal set</button>
-          <button class="btnPrimary" id="btnImGood">I’m good</button>
+        <div class="row" style="margin-top:14px;">
+          <button class="btn2" id="seeSetBtn">See the meal set</button>
+          <button class="btn" id="imGoodBtn">I’m good</button>
         </div>
 
-        <p class="hint">You can stop here.</p>
-      </section>
+        <div class="row" style="margin-top:10px;">
+          <button class="btnSmall" id="differentTonightBtn">Pick a different tonight</button>
+        </div>
 
-      <!-- S2 Meal Set -->
-      <section class="card hidden" id="s2">
+        <p class="fine">You can stop here.</p>
+      </div>
+    </section>
+
+    <!-- S2 Meal set -->
+    <section class="page" id="s2">
+      <div class="card">
         <div class="pill">Small set</div>
         <h2>The meal set</h2>
-        <p class="sub">Familiar food. Minimal cleanup. <b>No decisions.</b></p>
+        <p class="sub">Familiar food. Minimal cleanup. Same effort.</p>
 
-        <div class="choiceList" id="setList"></div>
+        <div class="stack" id="setList"></div>
 
-        <div class="section">
-          <p class="sub" style="margin-bottom:10px;">Same calm format. Different dinners.</p>
+        <p class="sub" style="margin-top:14px;">Ingredients repeat so shopping stays short.</p>
 
-          <div class="btnRow">
-            <button class="btnGhost" id="btnTryDifferent">Try different dinners</button>
-            <button class="btnPrimary" id="btnBackTonight">Back to tonight</button>
-          </div>
-
-          <div class="btnRow" style="margin-top:10px;">
-            <button class="btnSmall" id="btnNeedShop">If I need to shop</button>
-          </div>
-
-          <p class="hint">You can stop here.</p>
+        <div class="row" style="margin-top:6px;">
+          <button class="btn2" id="shopBtn">If I need to shop</button>
+          <button class="btn" id="backTonightBtn">Back to tonight</button>
         </div>
-      </section>
 
-      <!-- S3 Grocery -->
-      <section class="card hidden" id="s3">
+        <div class="row" style="margin-top:10px;">
+          <button class="btnSmall" id="rechooseBtn">Rechoose my meals</button>
+        </div>
+
+        <p class="fine">You can stop here.</p>
+      </div>
+    </section>
+
+    <!-- S3 Grocery list -->
+    <section class="page" id="s3">
+      <div class="card">
         <div class="pill">Optional</div>
         <h2>What to buy</h2>
         <p class="sub">Stays closed unless you open it.</p>
 
-        <details id="groceryDetails">
-          <summary>Open grocery list (short)</summary>
-          <div class="detailsBody" id="groceryBody"></div>
+        <button class="accordionBtn" id="groceryToggle">Open grocery list (short)</button>
+        <div class="accordionContent" id="groceryContent">
+          <div id="groceryLists"></div>
           <div class="tags" id="groceryTags"></div>
-        </details>
-
-        <div class="section">
-          <h2 style="margin-top:6px;">That’s it.</h2>
-          <p class="sub">Close the tab whenever.</p>
-
-          <div class="btnRow">
-            <button class="btnPrimary" id="btnHandleAgain">Handle my food</button>
-            <button class="btnGhost" id="btnCopyLink">Copy link</button>
-            <button class="btnSmall" id="btnBackSet">Back</button>
-          </div>
-
-          <p class="hint">You can stop here.</p>
         </div>
-      </section>
 
-      <div class="footerNote">Disposable UX prototype • hardcoded • GitHub Pages-ready</div>
-    </div>
+        <div class="divider"></div>
+
+        <h2 style="font-size:28px;margin-bottom:6px;">That’s it.</h2>
+        <p class="sub" style="margin-top:0;">Close the tab whenever.</p>
+
+        <div class="row">
+          <button class="btn" id="handleAgainBtn">Handle my food</button>
+          <button class="btn2" id="copyLinkBtn">Copy link</button>
+        </div>
+
+        <p class="fine"><a href="#s2" style="color:rgba(255,255,255,.60);text-decoration:none;font-weight:800;">Back</a></p>
+      </div>
+
+      <div class="footer">Disposable UX prototype · hardcoded · GitHub Pages-ready</div>
+    </section>
   </div>
 
 <script>
-/* ===========================
-   20 DINNER MEALS (no eggs)
-   =========================== */
+/* =========================
+   v2.3 — Core behavior
+   - 20 dinner options
+   - Choose "small set" = 3 (random, persisted)
+   - Tonight rotates by date (stable) + "Pick different tonight" override
+   - Rechoose button regenerates set and clears overrides
+   - Grocery list generated from chosen set
+========================= */
+
+const STORAGE_KEY = "fh_v23_state";
 
 const MEALS = [
   {
-    id: "chicken-rice-bowl",
-    title: "Chicken & rice bowl",
-    meta: "≤15 min • pan + bowl • low cleanup",
-    do: ["Heat chicken", "Add rice", "Add frozen veg", "Sauce it", "Eat"],
-    not: ["No planning", "No recipe hunting", "No prep marathon", "No spiral"],
-    ingredients: ["rotisserie chicken (or frozen chicken strips)", "microwave rice packets", "frozen mixed veggies", "salsa or hot sauce"]
+    id:"chicken_rice_bowl",
+    title:"Chicken & rice bowl",
+    meta:"≤15 min • pan + bowl",
+    do:["Heat chicken","Add rice","Add veg","Sauce it","Eat"],
+    ingredients:{
+      core:["Rotisserie chicken (or frozen strips)","Microwave rice packets","Frozen mixed veg"],
+      add:["Salsa or hot sauce","Teriyaki or soy sauce","Lime (optional)"]
+    }
   },
   {
-    id: "salmon-salad",
-    title: "Salmon + salad kit",
-    meta: "≤15 min • pan/airfryer • 1 bowl",
-    do: ["Cook salmon (or heat)", "Dump salad kit", "Add salmon", "Eat"],
-    not: ["No chopping", "No sauces from scratch", "No extra dishes", "No decisions"],
-    ingredients: ["salmon filets (fresh or frozen)", "bagged salad kit", "lemon (optional)"]
+    id:"turkey_taco_bowl",
+    title:"Turkey taco bowl",
+    meta:"≤15 min • pan + bowl",
+    do:["Brown turkey","Warm rice","Add beans","Top with salsa","Eat"],
+    ingredients:{
+      core:["Ground turkey (or pre-cooked chicken)","Microwave rice packets","Canned black beans"],
+      add:["Salsa","Shredded cheese (optional)","Greek yogurt (optional)"]
+    }
   },
   {
-    id: "turkey-taco-bowls",
-    title: "Turkey taco bowls",
-    meta: "≤15 min • pan + bowl • repeatable",
-    do: ["Brown turkey", "Add taco seasoning", "Add rice", "Top with salsa", "Eat"],
-    not: ["No recipe scrolling", "No complex toppings", "No multi-pan chaos", "No stress"],
-    ingredients: ["ground turkey", "taco seasoning", "microwave rice packets", "salsa", "shredded cheese (optional)"]
+    id:"salmon_steam_bag",
+    title:"Salmon + steam-bag veg",
+    meta:"≤15 min • tray + plate",
+    do:["Bake salmon","Microwave veg","Add rice","Season","Eat"],
+    ingredients:{
+      core:["Salmon fillets (fresh or frozen)","Steam-in-bag veggies","Microwave rice packets"],
+      add:["Lemon pepper","Garlic powder","Butter (optional)"]
+    }
   },
   {
-    id: "stirfry-bag",
-    title: "Frozen stir-fry + protein",
-    meta: "≤12 min • one pan • very low cleanup",
-    do: ["Cook frozen stir-fry bag", "Add chicken/shrimp/tofu", "Sauce (packet)", "Eat"],
-    not: ["No chopping", "No measuring", "No extra pans", "No thinking"],
-    ingredients: ["frozen stir-fry bag", "pre-cooked chicken or shrimp (or tofu)"]
+    id:"chicken_pesto_pasta",
+    title:"Chicken pesto pasta",
+    meta:"≤15 min • pot + bowl",
+    do:["Boil pasta","Heat chicken","Stir pesto","Add spinach","Eat"],
+    ingredients:{
+      core:["Pasta","Pesto (jar)","Rotisserie chicken"],
+      add:["Baby spinach","Parmesan (optional)"]
+    }
   },
   {
-    id: "pasta-red-sauce",
-    title: "Pasta + red sauce + protein",
-    meta: "≤15 min • pot • comfort-simple",
-    do: ["Boil pasta", "Warm sauce", "Add protein", "Eat"],
-    not: ["No fancy recipes", "No hour-long simmer", "No perfection", "No stress"],
-    ingredients: ["pasta", "jarred marinara", "frozen meatballs (or chicken)"]
+    id:"shrimp_fried_rice",
+    title:"Shrimp fried rice (lazy)",
+    meta:"≤12 min • pan + bowl",
+    do:["Heat shrimp","Add frozen veg","Add rice","Soy + mix","Eat"],
+    ingredients:{
+      core:["Frozen shrimp","Microwave rice packets","Frozen mixed veg"],
+      add:["Soy sauce","Sesame oil (optional)","Sriracha (optional)"]
+    }
   },
   {
-    id: "chicken-caesar-wrap",
-    title: "Chicken Caesar wraps",
-    meta: "≤10 min • bowl + wrap • no stove",
-    do: ["Mix salad kit + chicken", "Wrap it", "Eat"],
-    not: ["No cooking", "No chopping", "No extra cleanup", "No decisions"],
-    ingredients: ["bagged Caesar kit", "rotisserie chicken", "tortillas"]
+    id:"chicken_caesar_wrap",
+    title:"Chicken Caesar wraps",
+    meta:"≤10 min • board + plate",
+    do:["Chop chicken","Toss with Caesar","Wrap it","Eat"],
+    ingredients:{
+      core:["Rotisserie chicken","Tortillas","Romaine (bag)"],
+      add:["Caesar dressing","Parmesan (optional)","Croutons (optional)"]
+    }
   },
   {
-    id: "sheetpan-sausage-veg",
-    title: "Sausage + sheet-pan veggies",
-    meta: "≤20 min • sheet pan • hands-off",
-    do: ["Dump on pan", "Bake", "Eat"],
-    not: ["No prep marathon", "No sauces", "No extra dishes", "No stress"],
-    ingredients: ["pre-cooked chicken sausage", "frozen veggies (broccoli/peppers)", "olive oil (optional)"]
+    id:"sausage_peppers",
+    title:"Chicken sausage + peppers",
+    meta:"≤15 min • pan + plate",
+    do:["Slice sausage","Sauté peppers/onion","Add sauce","Eat"],
+    ingredients:{
+      core:["Chicken sausage","Frozen pepper/onion blend","Marinara (jar)"],
+      add:["Shredded mozzarella (optional)","Rice or bread (optional)"]
+    }
   },
   {
-    id: "beans-rice-bowl",
-    title: "Beans + rice + salsa bowl",
-    meta: "≤8 min • microwave • cheap & filling",
-    do: ["Microwave rice", "Add beans", "Add salsa", "Eat"],
-    not: ["No cooking skills", "No chopping", "No mess", "No decisions"],
-    ingredients: ["microwave rice packets", "canned black beans", "salsa", "shredded cheese (optional)"]
+    id:"beef_chili_bowl",
+    title:"Chili bowl (no-cook)",
+    meta:"≤6 min • bowl + spoon",
+    do:["Heat chili","Add toppings","Eat"],
+    ingredients:{
+      core:["Canned chili (or chili beans)"],
+      add:["Shredded cheese (optional)","Greek yogurt (optional)","Hot sauce (optional)"]
+    }
   },
   {
-    id: "chicken-pesto-pasta",
-    title: "Chicken pesto pasta",
-    meta: "≤15 min • pot • comfort-fast",
-    do: ["Boil pasta", "Add pesto", "Add chicken", "Eat"],
-    not: ["No complex cooking", "No extra steps", "No stress", "No thinking"],
-    ingredients: ["pasta", "jarred pesto", "pre-cooked chicken"]
+    id:"tuna_rice_bowl",
+    title:"Tuna rice bowl",
+    meta:"≤8 min • bowl + fork",
+    do:["Warm rice","Mix tuna","Add cucumber/veg","Sauce","Eat"],
+    ingredients:{
+      core:["Tuna packets/cans","Microwave rice packets","Cucumber (or frozen edamame)"],
+      add:["Soy sauce","Mayo (optional)","Sriracha (optional)"]
+    }
   },
   {
-    id: "shrimp-tacos",
-    title: "Shrimp tacos (frozen shrimp)",
-    meta: "≤12 min • pan • fun but easy",
-    do: ["Cook shrimp", "Warm tortillas", "Add slaw/salsa", "Eat"],
-    not: ["No long prep", "No complicated sauces", "No extra dishes", "No thinking"],
-    ingredients: ["frozen shrimp", "tortillas", "bagged slaw or salad", "salsa"]
+    id:"chicken_quesadilla",
+    title:"Chicken quesadillas",
+    meta:"≤12 min • pan + plate",
+    do:["Add tortilla","Cheese + chicken","Flip","Eat"],
+    ingredients:{
+      core:["Tortillas","Shredded cheese","Rotisserie chicken"],
+      add:["Salsa","Greek yogurt (optional)"]
+    }
   },
   {
-    id: "bbq-chicken-sweetpotato",
-    title: "BBQ chicken + microwaved sweet potato",
-    meta: "≤12 min • microwave • zero hassle",
-    do: ["Microwave sweet potato", "Add chicken", "Add BBQ", "Eat"],
-    not: ["No cooking", "No prep", "No cleanup", "No decisions"],
-    ingredients: ["sweet potatoes", "rotisserie chicken", "BBQ sauce"]
+    id:"stir_fry_kit",
+    title:"Stir-fry kit + chicken",
+    meta:"≤12 min • pan + bowl",
+    do:["Heat chicken","Cook kit","Add sauce","Eat"],
+    ingredients:{
+      core:["Bagged stir-fry kit","Rotisserie chicken (or tofu)"],
+      add:["Rice (optional)","Extra sauce (optional)"]
+    }
   },
   {
-    id: "burger-salad",
-    title: "Burger patties + salad kit",
-    meta: "≤15 min • pan/airfryer • simple",
-    do: ["Cook patties", "Dump salad kit", "Eat together"],
-    not: ["No bun drama", "No toppings bar", "No mess", "No stress"],
-    ingredients: ["frozen burger patties (or turkey)", "bagged salad kit"]
+    id:"gyro_bowl",
+    title:"Gyro bowl (cheat code)",
+    meta:"≤10 min • bowl + spoon",
+    do:["Warm meat","Add rice","Top with tzatziki","Eat"],
+    ingredients:{
+      core:["Pre-cooked gyro meat (or chicken)","Microwave rice packets","Cucumber + tomato (or salad mix)"],
+      add:["Tzatziki","Feta (optional)"]
+    }
   },
   {
-    id: "rice-beef-broccoli",
-    title: "Beef + broccoli + rice (shortcut)",
-    meta: "≤15 min • pan + bowl • filling",
-    do: ["Cook beef strips", "Add frozen broccoli", "Add rice", "Eat"],
-    not: ["No chopping", "No sauces from scratch", "No extra dishes", "No decisions"],
-    ingredients: ["beef strips (or steak-ums)", "frozen broccoli", "microwave rice packets", "teriyaki sauce (optional)"]
+    id:"bbq_chicken_sliders",
+    title:"BBQ chicken sliders",
+    meta:"≤10 min • bowl + plate",
+    do:["Shred chicken","Add BBQ","Assemble","Eat"],
+    ingredients:{
+      core:["Rotisserie chicken","BBQ sauce","Slider buns"],
+      add:["Coleslaw mix (optional)","Pickles (optional)"]
+    }
   },
   {
-    id: "chili-shortcut",
-    title: "Shortcut chili bowl",
-    meta: "≤15 min • pot • big payoff",
-    do: ["Warm chili", "Add topping (optional)", "Eat"],
-    not: ["No long simmer", "No chopping", "No stress", "No thinking"],
-    ingredients: ["canned chili (or premade)", "shredded cheese (optional)", "tortilla chips (optional)"]
+    id:"rice_bean_bowl",
+    title:"Rice + beans + toppings",
+    meta:"≤8 min • bowl + spoon",
+    do:["Warm rice","Add beans","Top","Eat"],
+    ingredients:{
+      core:["Microwave rice packets","Canned black beans","Salsa"],
+      add:["Avocado (optional)","Cheese (optional)","Hot sauce (optional)"]
+    }
   },
   {
-    id: "rotisserie-veg-plate",
-    title: "Rotisserie chicken + steam bag veg",
-    meta: "≤10 min • microwave • ultra simple",
-    do: ["Heat veg steam bag", "Serve chicken", "Eat"],
-    not: ["No cooking", "No prep", "No mess", "No decisions"],
-    ingredients: ["rotisserie chicken", "steam-in-bag veggies", "microwave rice packets (optional)"]
+    id:"meatball_sub",
+    title:"Meatball subs (lazy)",
+    meta:"≤12 min • tray + plate",
+    do:["Heat meatballs","Add marinara","Toast roll","Eat"],
+    ingredients:{
+      core:["Frozen meatballs","Marinara (jar)","Sub rolls"],
+      add:["Mozzarella (optional)"]
+    }
   },
   {
-    id: "quesadilla-chicken",
-    title: "Chicken quesadillas",
-    meta: "≤12 min • pan • low effort",
-    do: ["Add tortilla + cheese + chicken", "Toast", "Eat"],
-    not: ["No complicated cooking", "No prep", "No dishes", "No stress"],
-    ingredients: ["tortillas", "shredded cheese", "rotisserie chicken", "salsa (optional)"]
+    id:"chicken_soup_plus",
+    title:"Soup + protein upgrade",
+    meta:"≤10 min • pot + bowl",
+    do:["Heat soup","Add chicken","Add spinach","Eat"],
+    ingredients:{
+      core:["Soup (carton/can)","Rotisserie chicken"],
+      add:["Baby spinach","Crackers (optional)"]
+    }
   },
   {
-    id: "tuna-rice-bowl",
-    title: "Tuna rice bowl",
-    meta: "≤6 min • bowl • no stove",
-    do: ["Microwave rice", "Add tuna", "Add sauce", "Eat"],
-    not: ["No cooking", "No mess", "No thinking", "No extra dishes"],
-    ingredients: ["microwave rice packets", "canned tuna", "mayo or soy sauce (optional)"]
+    id:"sheet_pan_nuggets",
+    title:"Sheet-pan nuggets + veg",
+    meta:"≤15 min • tray + plate",
+    do:["Bake nuggets","Bake veg","Sauce","Eat"],
+    ingredients:{
+      core:["Chicken nuggets/strips","Frozen broccoli (or veg mix)"],
+      add:["BBQ sauce","Hot sauce"]
+    }
   },
   {
-    id: "chicken-fajita-bag",
-    title: "Chicken fajita skillet (frozen peppers)",
-    meta: "≤15 min • one pan • easy win",
-    do: ["Cook chicken", "Add frozen peppers/onions", "Season", "Eat"],
-    not: ["No chopping", "No complexity", "No stress", "No overthinking"],
-    ingredients: ["chicken strips", "frozen peppers & onions", "tortillas (optional)", "salsa"]
+    id:"poke_bowl_fake",
+    title:"“Poke” bowl (no-fuss)",
+    meta:"≤10 min • bowl + fork",
+    do:["Warm rice","Add smoked salmon","Add cucumber","Sauce","Eat"],
+    ingredients:{
+      core:["Microwave rice packets","Smoked salmon (or canned salmon)","Cucumber"],
+      add:["Soy sauce","Sesame seeds (optional)"]
+    }
   },
   {
-    id: "ramen-upgrade",
-    title: "Upgraded ramen (quick protein)",
-    meta: "≤10 min • pot • warm & easy",
-    do: ["Cook ramen", "Add protein", "Add veg", "Eat"],
-    not: ["No gourmet attempt", "No extra dishes", "No stress", "No decisions"],
-    ingredients: ["ramen", "frozen mixed veggies", "pre-cooked chicken (or tofu)"]
+    id:"chicken_salsa_salad",
+    title:"Salsa chicken salad",
+    meta:"≤8 min • bowl + fork",
+    do:["Dump salad mix","Add chicken","Add salsa","Eat"],
+    ingredients:{
+      core:["Bagged salad kit","Rotisserie chicken"],
+      add:["Salsa","Tortilla chips (optional)"]
+    }
   },
   {
-    id: "pizza-salad",
-    title: "Pizza + salad kit (reality meal)",
-    meta: "≤10 min • oven/airfryer • done",
-    do: ["Heat pizza", "Dump salad kit", "Eat"],
-    not: ["No guilt spiral", "No cooking", "No decisions", "No effort"],
-    ingredients: ["frozen pizza", "bagged salad kit"]
+    id:"ramen_upgrade",
+    title:"Ramen upgrade",
+    meta:"≤12 min • pot + bowl",
+    do:["Boil noodles","Add frozen veg","Add chicken","Eat"],
+    ingredients:{
+      core:["Ramen or instant noodles","Frozen mixed veg","Rotisserie chicken"],
+      add:["Soft tofu (optional)","Chili oil (optional)"]
+    }
   }
 ];
 
-/* ===========================
-   STATE + ROUTING
-   =========================== */
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return null;
+    return JSON.parse(raw);
+  }catch(e){ return null; }
+}
 
-const els = {
-  s0: document.getElementById('s0'),
-  s1: document.getElementById('s1'),
-  s2: document.getElementById('s2'),
-  s3: document.getElementById('s3'),
-
-  btnResetTop: document.getElementById('btnResetTop'),
-  btnHandle: document.getElementById('btnHandle'),
-  btnShowTonight: document.getElementById('btnShowTonight'),
-  btnSeeSet: document.getElementById('btnSeeSet'),
-  btnImGood: document.getElementById('btnImGood'),
-  btnTryDifferent: document.getElementById('btnTryDifferent'),
-  btnBackTonight: document.getElementById('btnBackTonight'),
-  btnNeedShop: document.getElementById('btnNeedShop'),
-  btnHandleAgain: document.getElementById('btnHandleAgain'),
-  btnCopyLink: document.getElementById('btnCopyLink'),
-  btnBackSet: document.getElementById('btnBackSet'),
-
-  setList: document.getElementById('setList'),
-  tonightTitle: document.getElementById('tonightTitle'),
-  tonightMeta: document.getElementById('tonightMeta'),
-  tonightDo: document.getElementById('tonightDo'),
-  tonightNot: document.getElementById('tonightNot'),
-
-  groceryBody: document.getElementById('groceryBody'),
-  groceryTags: document.getElementById('groceryTags'),
-  groceryDetails: document.getElementById('groceryDetails'),
-};
-
-function showScreen(id){
-  ['s0','s1','s2','s3'].forEach(k => els[k].classList.add('hidden'));
-  els[id].classList.remove('hidden');
-  location.hash = `#${id}`;
+function saveState(state){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
 
 function todayKey(){
   const d = new Date();
   const y = d.getFullYear();
-  const m = String(d.getMonth()+1).padStart(2,'0');
-  const day = String(d.getDate()).padStart(2,'0');
+  const m = String(d.getMonth()+1).padStart(2,"0");
+  const day = String(d.getDate()).padStart(2,"0");
   return `${y}-${m}-${day}`;
 }
 
-/* Stable daily set, but allow "Try different dinners" without making it feel like planning. */
-function getVariant(){
-  const base = `${todayKey()}`;
-  const v = Number(localStorage.getItem(`fh_variant_${base}`) || "0");
-  return v;
-}
-function bumpVariant(){
-  const base = `${todayKey()}`;
-  const v = getVariant() + 1;
-  localStorage.setItem(`fh_variant_${base}`, String(v));
-  return v;
+function randInt(max){
+  return Math.floor(Math.random()*max);
 }
 
-function mulberry32(a){
-  return function() {
-    var t = a += 0x6D2B79F5;
-    t = Math.imul(t ^ t >>> 15, t | 1);
-    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
-    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+function pickUnique(array, n){
+  const copy = [...array];
+  const out = [];
+  while(out.length < n && copy.length){
+    const idx = randInt(copy.length);
+    out.push(copy.splice(idx,1)[0]);
   }
+  return out;
 }
 
-function hashToSeed(str){
-  let h = 2166136261;
-  for (let i=0;i<str.length;i++){
-    h ^= str.charCodeAt(i);
-    h = Math.imul(h, 16777619);
+function ensureSet(){
+  let state = loadState();
+  if(!state){
+    state = { setIds:[], tonightOverrideByDay:{} };
   }
-  return h >>> 0;
+  if(!state.setIds || state.setIds.length !== 3){
+    const picks = pickUnique(MEALS.map(m=>m.id), 3);
+    state.setIds = picks;
+    state.tonightOverrideByDay = {};
+    saveState(state);
+  }
+  return state;
 }
 
-function pickSet(){
-  const seedStr = `foodhandled:${todayKey()}:v${getVariant()}`;
-  const seed = hashToSeed(seedStr);
-  const rand = mulberry32(seed);
+function rechooseMeals(){
+  const state = { setIds: pickUnique(MEALS.map(m=>m.id), 3), tonightOverrideByDay:{} };
+  saveState(state);
+  renderAll();
+}
 
-  // shuffle copy
-  const arr = MEALS.slice();
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(rand() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
+function getMealById(id){
+  return MEALS.find(m=>m.id===id);
+}
+
+function getSetMeals(){
+  const state = ensureSet();
+  return state.setIds.map(getMealById).filter(Boolean);
+}
+
+function getTonightMeal(){
+  const state = ensureSet();
+  const setMeals = getSetMeals();
+  const key = todayKey();
+
+  // If user picked a different tonight for today, honor it
+  const overrideId = state.tonightOverrideByDay?.[key];
+  if(overrideId){
+    const m = getMealById(overrideId);
+    if(m) return m;
   }
 
-  const set = arr.slice(0,3);
-  localStorage.setItem(`fh_set_${todayKey()}`, JSON.stringify(set.map(x => x.id)));
-  return set;
+  // Deterministic rotation by date (stable, feels safe)
+  const hash = key.split("-").join("");
+  let sum = 0;
+  for(const ch of hash) sum += ch.charCodeAt(0);
+  const idx = sum % setMeals.length;
+  return setMeals[idx];
 }
 
-function getSet(){
-  const raw = localStorage.getItem(`fh_set_${todayKey()}`);
-  if (!raw) return pickSet();
-  try{
-    const ids = JSON.parse(raw);
-    const set = ids.map(id => MEALS.find(m => m.id === id)).filter(Boolean);
-    if (set.length === 3) return set;
-    return pickSet();
-  }catch{
-    return pickSet();
-  }
+function pickDifferentTonight(){
+  const state = ensureSet();
+  const setMeals = getSetMeals();
+  const current = getTonightMeal();
+  const options = setMeals.filter(m=>m.id!==current.id);
+  const chosen = options[randInt(options.length)];
+  const key = todayKey();
+  state.tonightOverrideByDay = state.tonightOverrideByDay || {};
+  state.tonightOverrideByDay[key] = chosen.id;
+  saveState(state);
+  renderAll();
+  go("#s1");
 }
 
-function pickTonight(set){
-  // pick 1 of the 3 in a stable daily way (but changes when variant changes)
-  const seedStr = `tonight:${todayKey()}:v${getVariant()}`;
-  const seed = hashToSeed(seedStr);
-  const rand = mulberry32(seed);
-  const idx = Math.floor(rand() * set.length);
-  const meal = set[idx];
-  localStorage.setItem(`fh_tonight_${todayKey()}`, meal.id);
-  return meal;
-}
+function buildGroceryFromSet(){
+  const setMeals = getSetMeals();
 
-function getTonight(set){
-  const raw = localStorage.getItem(`fh_tonight_${todayKey()}`);
-  if (!raw) return pickTonight(set);
-  const found = MEALS.find(m => m.id === raw);
-  if (!found) return pickTonight(set);
-  // If tonight isn't in current set (after reshuffle), just re-pick.
-  if (!set.some(m => m.id === found.id)) return pickTonight(set);
-  return found;
-}
+  const core = new Set();
+  const add = new Set();
 
-function renderSet(){
-  const set = getSet();
-  els.setList.innerHTML = "";
-  set.forEach(m => {
-    const div = document.createElement('div');
-    div.className = "choice";
-    div.innerHTML = `
-      <div class="choiceTitle">${m.title}</div>
-      <div class="choiceMeta">${m.meta}</div>
-    `;
-    els.setList.appendChild(div);
+  setMeals.forEach(m=>{
+    (m.ingredients.core||[]).forEach(x=>core.add(x));
+    (m.ingredients.add||[]).forEach(x=>add.add(x));
   });
+
+  return {
+    core:[...core],
+    add:[...add],
+    tags:[
+      `~${Math.min(10, Math.max(8, core.size))}+ items`,
+      "1 store",
+      "minimal waste"
+    ]
+  };
+}
+
+/* =========================
+   Rendering
+========================= */
+
+function renderHome(){
+  const state = ensureSet();
+  const status = document.getElementById("setStatus");
+  const setMeals = getSetMeals();
+  status.textContent = setMeals.length ? `Current set: ${setMeals.map(m=>m.title).join(" • ")}` : "";
 }
 
 function renderTonight(){
-  const set = getSet();
-  const meal = getTonight(set);
+  const meal = getTonightMeal();
+  const tonightCard = document.getElementById("tonightCard");
+  tonightCard.innerHTML = `
+    <p class="itemTitle">${meal.title}</p>
+    <p class="itemMeta">${meal.meta}</p>
+  `;
 
-  els.tonightTitle.textContent = meal.title;
-  els.tonightMeta.textContent = meal.meta;
-
-  els.tonightDo.innerHTML = "";
-  meal.do.forEach(x => {
-    const li = document.createElement('li');
-    li.textContent = x;
-    els.tonightDo.appendChild(li);
-  });
-
-  els.tonightNot.innerHTML = "";
-  meal.not.forEach(x => {
-    const li = document.createElement('li');
-    li.textContent = x;
-    els.tonightNot.appendChild(li);
+  const doThis = document.getElementById("doThis");
+  doThis.innerHTML = "";
+  meal.do.forEach(step=>{
+    const li = document.createElement("li");
+    li.textContent = step;
+    doThis.appendChild(li);
   });
 }
 
-function uniq(arr){
-  return Array.from(new Set(arr));
+function renderSet(){
+  const setMeals = getSetMeals();
+  const list = document.getElementById("setList");
+  list.innerHTML = "";
+  setMeals.forEach(m=>{
+    const div = document.createElement("div");
+    div.className = "item";
+    div.innerHTML = `
+      <p class="itemTitle">${m.title}</p>
+      <p class="itemMeta">${m.meta}</p>
+    `;
+    list.appendChild(div);
+  });
 }
 
 function renderGrocery(){
-  const set = getSet();
-  const all = set.flatMap(m => m.ingredients || []);
-  const items = uniq(all).slice(0, 14); // keep it short on purpose
+  const data = buildGroceryFromSet();
+  const wrap = document.getElementById("groceryLists");
+  const tags = document.getElementById("groceryTags");
 
-  const coreLabel = `<div style="font-weight:900; margin-bottom:6px;">Core (from your set)</div>`;
-  const list = `<ul>${items.map(i => `<li>${escapeHtml(i)}</li>`).join('')}</ul>`;
-
-  const optional = `
-    <div style="margin-top:10px; font-weight:900;">Quick add-ons (optional)</div>
-    <ul>
-      <li>bagged salad kit (for a “done” side)</li>
-      <li>hot sauce / salsa / teriyaki</li>
-      <li>frozen fruit (easy dessert)</li>
-    </ul>
+  wrap.innerHTML = `
+    <p class="itemTitle" style="margin:0 0 6px;">Core (shows up more than once)</p>
+    <ul>${data.core.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>
+    <p class="itemTitle" style="margin:14px 0 6px;">Quick add-ons (optional)</p>
+    <ul>${data.add.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>
   `;
 
-  els.groceryBody.innerHTML = coreLabel + list + optional;
-
-  // tags (simple + reassuring)
-  els.groceryTags.innerHTML = "";
-  const tags = [
-    `~${Math.min(items.length,14)} items`,
-    `1 store`,
-    `minimal waste`
-  ];
-  tags.forEach(t => {
-    const span = document.createElement('span');
+  tags.innerHTML = "";
+  data.tags.forEach(t=>{
+    const span = document.createElement("span");
     span.className = "tag";
     span.textContent = t;
-    els.groceryTags.appendChild(span);
+    tags.appendChild(span);
   });
-
-  // keep list closed unless opened
-  els.groceryDetails.open = false;
 }
 
-function escapeHtml(str){
-  return String(str)
+function escapeHtml(s){
+  return String(s)
     .replaceAll("&","&amp;")
     .replaceAll("<","&lt;")
     .replaceAll(">","&gt;")
@@ -775,104 +805,92 @@ function escapeHtml(str){
     .replaceAll("'","&#039;");
 }
 
-/* ===========================
-   ACTIONS
-   =========================== */
-
-function startFlow(){
-  // ensure set exists for today
-  getSet();
+function renderAll(){
+  renderHome();
   renderTonight();
-  showScreen('s1');
-}
-
-function startOverHard(){
-  // reset today's stuff only (keep minimal; no global wipes)
-  localStorage.removeItem(`fh_set_${todayKey()}`);
-  localStorage.removeItem(`fh_tonight_${todayKey()}`);
-  localStorage.removeItem(`fh_variant_${todayKey()}`);
-  showScreen('s0');
-}
-
-els.btnResetTop.addEventListener('click', startOverHard);
-
-els.btnHandle.addEventListener('click', () => {
-  // picking a set is "handled" for them
-  getSet();
-  renderTonight();
-  showScreen('s1');
-});
-
-els.btnShowTonight.addEventListener('click', () => {
-  getSet();
-  renderTonight();
-  showScreen('s1');
-});
-
-els.btnSeeSet.addEventListener('click', () => {
   renderSet();
-  showScreen('s2');
-});
-
-els.btnImGood.addEventListener('click', () => {
-  // end the flow gracefully
-  showScreen('s0');
-});
-
-els.btnTryDifferent.addEventListener('click', () => {
-  bumpVariant();
-  localStorage.removeItem(`fh_set_${todayKey()}`);
-  localStorage.removeItem(`fh_tonight_${todayKey()}`);
-  renderSet();
-});
-
-els.btnBackTonight.addEventListener('click', () => {
-  renderTonight();
-  showScreen('s1');
-});
-
-els.btnNeedShop.addEventListener('click', () => {
   renderGrocery();
-  showScreen('s3');
+}
+
+/* =========================
+   Navigation
+========================= */
+
+function go(hash){
+  location.hash = hash;
+  showPageFromHash();
+}
+
+function showPageFromHash(){
+  const hash = location.hash || "#s0";
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  const page = document.querySelector(hash);
+  (page || document.getElementById("s0")).classList.add("active");
+}
+
+/* =========================
+   Events
+========================= */
+
+document.getElementById("handleBtn").addEventListener("click", ()=>{
+  ensureSet();
+  renderAll();
+  go("#s1");
 });
 
-els.btnHandleAgain.addEventListener('click', () => {
-  // feels like a reset, but still calm
-  bumpVariant();
-  localStorage.removeItem(`fh_set_${todayKey()}`);
-  localStorage.removeItem(`fh_tonight_${todayKey()}`);
-  getSet();
-  renderTonight();
-  showScreen('s1');
+document.getElementById("showTonightBtn").addEventListener("click", ()=>{
+  ensureSet();
+  renderAll();
+  go("#s1");
 });
 
-els.btnBackSet.addEventListener('click', () => {
-  renderSet();
-  showScreen('s2');
+document.getElementById("seeSetBtn").addEventListener("click", ()=>go("#s2"));
+document.getElementById("backTonightBtn").addEventListener("click", ()=>go("#s1"));
+document.getElementById("shopBtn").addEventListener("click", ()=>go("#s3"));
+document.getElementById("handleAgainBtn").addEventListener("click", ()=>go("#s1"));
+
+document.getElementById("imGoodBtn").addEventListener("click", ()=>{
+  // “I’m good” just returns to home — minimal closure
+  go("#s0");
 });
 
-els.btnCopyLink.addEventListener('click', async () => {
+document.getElementById("differentTonightBtn").addEventListener("click", ()=>{
+  pickDifferentTonight();
+});
+
+document.getElementById("rechooseBtn").addEventListener("click", ()=>{
+  rechooseMeals();
+  go("#s2");
+});
+
+document.getElementById("rechooseFromHome").addEventListener("click", ()=>{
+  rechooseMeals();
+  go("#s0");
+});
+
+document.getElementById("copyLinkBtn").addEventListener("click", async ()=>{
   try{
-    await navigator.clipboard.writeText(location.origin + location.pathname);
-    els.btnCopyLink.textContent = "Copied";
-    setTimeout(()=> els.btnCopyLink.textContent = "Copy link", 1100);
-  }catch{
-    els.btnCopyLink.textContent = "Copy failed";
-    setTimeout(()=> els.btnCopyLink.textContent = "Copy link", 1100);
+    await navigator.clipboard.writeText(location.href.split("#")[0] + "#s0");
+    const btn = document.getElementById("copyLinkBtn");
+    const old = btn.textContent;
+    btn.textContent = "Copied";
+    setTimeout(()=>btn.textContent = old, 900);
+  }catch(e){
+    alert("Couldn’t copy. (iOS sometimes blocks clipboard.)");
   }
 });
 
-/* ===========================
-   INIT (hash-safe)
-   =========================== */
+document.getElementById("groceryToggle").addEventListener("click", ()=>{
+  const c = document.getElementById("groceryContent");
+  c.classList.toggle("show");
+});
 
-(function init(){
-  const hash = (location.hash || "").replace("#","");
-  if (hash === "s1"){ renderTonight(); showScreen('s1'); return; }
-  if (hash === "s2"){ renderSet(); showScreen('s2'); return; }
-  if (hash === "s3"){ renderGrocery(); showScreen('s3'); return; }
-  showScreen('s0');
-})();
+window.addEventListener("hashchange", showPageFromHash);
+
+/* boot */
+ensureSet();
+renderAll();
+showPageFromHash();
 </script>
 </body>
 </html>

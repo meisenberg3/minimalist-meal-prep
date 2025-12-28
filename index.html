@@ -4,23 +4,38 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Food, Handled</title>
-  <link rel="stylesheet" href="./style.css" />
+  <meta name="description" content="Tap once. Dinner shows up. No planning, no spiraling." />
+  <link rel="stylesheet" href="./style.css?v=1" />
 </head>
 <body>
-  <main class="wrap" id="top">
-    <div class="toprow">
-      <button id="resetAll" class="linkbtn" type="button">Start over</button>
+  <div class="bg"></div>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand" aria-label="Food, Handled">
+        <span class="dot"></span>
+        <span>Food, Handled</span>
+      </div>
+
+      <button id="btnResetTop" class="btn quiet start-over" type="button" aria-label="Start over">
+        Start over
+      </button>
     </div>
+  </header>
 
-    <section id="app"></section>
+  <main class="wrap">
+    <section class="card shell">
+      <div id="app"></div>
 
-    <footer class="foot">
-      <div class="muted">v2.3 — calm by design</div>
-      <div class="muted">Disposable UX prototype · hardcoded · GitHub Pages-ready</div>
-    </footer>
+      <footer class="foot">
+        <div class="muted">
+          v2.3 — calm by design<br />
+          Disposable UX prototype · hardcoded · GitHub Pages-ready
+        </div>
+      </footer>
+    </section>
   </main>
 
-  <div id="modalRoot"></div>
-  <script src="./app.js"></script>
+  <script src="./app.js?v=1"></script>
 </body>
 </html>

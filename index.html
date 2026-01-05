@@ -1,41 +1,210 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Food, Handled</title>
-  <meta name="description" content="Tap once. Dinner shows up. No planning, no spiraling." />
-  <link rel="stylesheet" href="./style.css?v=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minimalist Meal Prep</title>
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <div class="bg"></div>
-
   <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand" aria-label="Food, Handled">
-        <span class="dot"></span>
-        <span>Food, Handled</span>
-      </div>
+    <div class="brand">
+      <span class="dot"></span>
+      <span class="brand-title">Minimalist Meal Prep</span>
+    </div>
 
-      <button id="btnResetTop" class="btn quiet start-over" type="button" aria-label="Start over">
-        Start over
-      </button>
+    <div class="topbar-actions">
+      <a class="link" href="#start">Start</a>
+      <a class="link" href="#groceries">Grocery List</a>
+      <a class="link" href="#why">Why it works</a>
+      <button id="resetBtn" class="btn btn-ghost" type="button" title="Reset saved choices">Reset</button>
     </div>
   </header>
 
   <main class="wrap">
-    <section class="card shell">
-      <div id="app"></div>
+    <!-- HERO / START -->
+    <section id="start" class="card hero">
+      <div class="hero-left">
+        <h1>Your meals are handled.</h1>
+        <p class="sub">
+          Same meals. Same shopping list. No planning. No tracking. No thinking.
+        </p>
 
-      <footer class="foot">
-        <div class="muted">
-          v2.3 — calm by design<br />
-          Disposable UX prototype · hardcoded · GitHub Pages-ready
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#groceries">Get the grocery list</a>
+          <button id="copyPlanBtn" class="btn btn-secondary" type="button">Copy the meal plan</button>
         </div>
-      </footer>
+
+        <div class="mini-proof">
+          <div class="pill">✅ 10-second clarity</div>
+          <div class="pill">✅ Lazy-proof by default</div>
+          <div class="pill">✅ Start tomorrow</div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="panel">
+          <div class="panel-title">Your default plan (do this first)</div>
+
+          <div class="meal-grid" id="mealPlan">
+            <div class="meal">
+              <div class="meal-label">Breakfast (daily)</div>
+              <div class="meal-name" data-key="breakfast">Greek yogurt + oats + banana</div>
+              <div class="meal-note">No cooking. 2 minutes.</div>
+            </div>
+
+            <div class="meal">
+              <div class="meal-label">Lunch (daily)</div>
+              <div class="meal-name" data-key="lunch">Chicken + rice + frozen vegetables</div>
+              <div class="meal-note">Batch cook once. Eat all week.</div>
+            </div>
+
+            <div class="meal">
+              <div class="meal-label">Dinner (rotate 3)</div>
+              <ul class="dinner-list">
+                <li data-key="dinner1">Turkey chili (big pot)</li>
+                <li data-key="dinner2">Salmon + potatoes + vegetables (sheet pan)</li>
+                <li data-key="dinner3">Eggs + beans + tortillas (10 minutes)</li>
+              </ul>
+              <div class="meal-note">Pick any order. Repeat forever.</div>
+            </div>
+          </div>
+
+          <div class="panel-footer">
+            <span class="muted">Want variety later?</span>
+            <a class="link" href="#swaps">Optional swaps ↓</a>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <!-- GROCERIES -->
+    <section id="groceries" class="card">
+      <div class="section-head">
+        <h2>Your grocery list (copy-paste)</h2>
+        <p class="muted">
+          This is built to match the default plan above. Do not customize first. Start here.
+        </p>
+      </div>
+
+      <div class="action-row">
+        <button id="copyGroceryBtn" class="btn btn-primary" type="button">Copy grocery list</button>
+        <button id="printBtn" class="btn btn-secondary" type="button">Print</button>
+        <button id="downloadBtn" class="btn btn-ghost" type="button">Download .txt</button>
+      </div>
+
+      <div class="two-col">
+        <div class="list-card">
+          <h3>Weekly list (simple)</h3>
+          <pre id="groceryText" class="pre"></pre>
+        </div>
+
+        <div class="list-card">
+          <h3>How to use it (60 seconds)</h3>
+          <ol class="steps">
+            <li>Buy this list once.</li>
+            <li>Cook chicken + rice once for lunches.</li>
+            <li>Pick one dinner pot/pan meal and make it big.</li>
+            <li>Repeat.</li>
+          </ol>
+          <div class="callout">
+            <strong>Rule:</strong> If you’re tired, do the default. No changes needed.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPTIONAL SWAPS -->
+    <section id="swaps" class="card">
+      <div class="section-head">
+        <h2>Optional swaps (only if you get bored)</h2>
+        <p class="muted">
+          This is NOT required. 80% of people should never touch this.
+        </p>
+      </div>
+
+      <div class="swap-grid">
+        <div class="swap-card">
+          <h3>Swap the lunch protein</h3>
+          <p class="muted">Keep rice + frozen veg the same.</p>
+          <div class="chips" id="proteinChips">
+            <button class="chip" data-protein="Chicken">Chicken</button>
+            <button class="chip" data-protein="Turkey">Turkey</button>
+            <button class="chip" data-protein="Beef">Beef</button>
+            <button class="chip" data-protein="Tofu">Tofu</button>
+            <button class="chip" data-protein="Tuna">Tuna</button>
+          </div>
+        </div>
+
+        <div class="swap-card">
+          <h3>Swap the breakfast fruit</h3>
+          <p class="muted">Keep yogurt + oats the same.</p>
+          <div class="chips" id="fruitChips">
+            <button class="chip" data-fruit="Banana">Banana</button>
+            <button class="chip" data-fruit="Berries">Berries</button>
+            <button class="chip" data-fruit="Apple">Apple</button>
+            <button class="chip" data-fruit="Peach">Peach</button>
+          </div>
+        </div>
+
+        <div class="swap-card">
+          <h3>Swap dinner #2 protein</h3>
+          <p class="muted">Keep potatoes + veg the same.</p>
+          <div class="chips" id="dinner2Chips">
+            <button class="chip" data-d2="Salmon">Salmon</button>
+            <button class="chip" data-d2="Chicken thighs">Chicken thighs</button>
+            <button class="chip" data-d2="Pork chops">Pork chops</button>
+            <button class="chip" data-d2="Cod">Cod</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>Important:</strong> Swaps should never create new decisions.
+        You’re only allowed to swap one item while everything else stays the same.
+      </div>
+    </section>
+
+    <!-- WHY IT WORKS -->
+    <section id="why" class="card">
+      <div class="section-head">
+        <h2>Why this works (optional reading)</h2>
+        <p class="muted">
+          If you only came for the plan + list, you’re done. This section is for people who want the logic.
+        </p>
+      </div>
+
+      <div class="content">
+        <h3>The real enemy is decision fatigue</h3>
+        <p>
+          Most people don’t fail because they lack discipline. They fail because dinner shows up every day,
+          and every day requires decisions. This removes the decisions.
+        </p>
+
+        <h3>Defaults beat customization</h3>
+        <p>
+          “Flexibility” sounds nice, but it hides work. The default plan is the product.
+          Swaps exist only as a pressure valve if you get bored.
+        </p>
+
+        <h3>Simple is not “less food.” Simple is “less thinking.”</h3>
+        <p>
+          Same meals. Same list. Same routines. You don’t need novelty—your brain thinks you do.
+        </p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <span class="muted">Minimalist Meal Prep — built for real humans.</span>
+        <a class="link" href="#start">Back to top</a>
+      </div>
+    </footer>
   </main>
 
-  <script src="./app.js?v=1"></script>
+  <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="./app.js"></script>
 </body>
 </html>

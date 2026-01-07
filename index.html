@@ -15,8 +15,9 @@
       <span class="brand-title">Minimalist Meal Prep</span>
     </div>
     <div class="topbar-actions">
-      <button class="btn btn-primary" onclick="location.hash='#groceries'">
-        Get the grocery list
+      <!-- Single primary CTA (no duplicates) -->
+      <button id="goGroceriesTop" class="btn btn-primary">
+        Get grocery list
       </button>
     </div>
   </header>
@@ -28,13 +29,16 @@
       <div class="hero-left">
         <h1>Your meals are handled.</h1>
         <p class="sub">
-          Same three meals. Same shopping list. Zero decisions. Works forever.
+          Same three meals. Same shopping list. Zero decisions.
         </p>
 
         <div class="cta-row">
-          <button class="btn btn-primary" onclick="location.hash='#groceries'">
-            Get the grocery list →
+          <!-- Single primary CTA -->
+          <button id="goGroceriesHero" class="btn btn-primary">
+            Get grocery list →
           </button>
+
+          <!-- One secondary action -->
           <button id="copyPlanBtn" class="btn btn-secondary">
             Copy the meal plan
           </button>
@@ -57,53 +61,27 @@
 
           <div class="meal">
             <div class="meal-label">Breakfast (every day)</div>
-            <div class="meal-name">Greek yogurt + oats + banana</div>
+            <div class="meal-name" data-key="breakfast">Greek yogurt + oats + Banana</div>
             <div class="meal-note">No cooking. 2 minutes.</div>
           </div>
 
           <div class="meal">
             <div class="meal-label">Lunch (every day)</div>
-            <div class="meal-name">Leftover dinner</div>
+            <div class="meal-name" data-key="lunch">Leftover dinner</div>
             <div class="meal-note">Already made. No extra prep.</div>
           </div>
 
           <div class="meal">
             <div class="meal-label">Dinner (rotate these 3 forever)</div>
             <ul class="dinner-list">
-              <li>Chicken thighs + rice + broccoli</li>
-              <li>Ground beef + sweet potatoes + green beans</li>
-              <li>Eggs + toast + beans</li>
+              <li data-key="dinner1">Chicken thighs + rice + broccoli</li>
+              <li data-key="dinner2">Ground beef + sweet potatoes + green beans</li>
+              <li data-key="dinner3">Eggs + toast + beans</li>
             </ul>
             <div class="meal-note">Same three dinners. Every week. Forever.</div>
           </div>
 
-          <div class="callout" style="margin-top:12px;">
-            <strong>You’ll buy this every week:</strong>
-            <ul style="margin:8px 0 0 18px; line-height:1.6;">
-              <li>Chicken thighs (3 lbs)</li>
-              <li>Ground beef (2 lbs)</li>
-              <li>Eggs (1 dozen)</li>
-              <li>Rice</li>
-              <li>Sweet potatoes</li>
-              <li>Broccoli</li>
-              <li>Green beans</li>
-              <li>Greek yogurt</li>
-              <li>Oats</li>
-              <li>Bananas</li>
-            </ul>
-
-            <div style="margin-top:8px;">
-              ⏱️ <strong>90 minutes</strong> on Sunday &nbsp;•&nbsp;
-              💰 <strong>~$45/week</strong>
-            </div>
-
-            <div style="margin-top:10px;">
-              <button class="btn btn-primary" onclick="location.hash='#groceries'">
-                Download the full grocery list →
-              </button>
-            </div>
-          </div>
-
+          <!-- Remove duplicate CTA inside the plan. Keep it clean. -->
           <div class="panel-footer">
             <span class="muted">Bored after a month?</span>
             <a class="link" href="#swaps">Optional swaps ↓</a>
@@ -112,79 +90,94 @@
       </div>
     </section>
 
-    <!-- GROCERIES -->
+    <!-- GROCERIES (locked until user clicks CTA) -->
     <section id="groceries" class="card">
       <div class="section-head">
-        <h2>Your grocery list (copy-paste)</h2>
+        <h2>Your grocery list</h2>
         <p class="muted">
-          This matches the plan above exactly. No customization required.
+          Matches the plan above. No customization required.
         </p>
       </div>
 
-      <div class="action-row">
-        <button id="copyGroceryBtn" class="btn btn-primary">Copy grocery list</button>
-        <button id="printBtn" class="btn btn-secondary">Print</button>
-        <button id="downloadBtn" class="btn btn-ghost">Download .txt</button>
+      <!-- This is shown before reveal -->
+      <div id="groceriesLocked" class="callout">
+        <strong>Tap “Get grocery list”</strong> and it will appear here.
       </div>
 
-      <pre id="groceryText" class="pre"></pre>
+      <!-- This block is hidden until CTA -->
+      <div id="groceriesContent" class="hide">
+        <div class="action-row">
+          <button id="copyGroceryBtn" class="btn btn-primary">Copy grocery list</button>
+          <button id="downloadBtn" class="btn btn-ghost">Download .txt</button>
+          <button id="resetBtn" class="btn btn-secondary">Reset</button>
+        </div>
 
-      <div class="callout">
-        <strong>Rule:</strong> If you’re tired, do the default. No changes required.
+        <pre id="groceryText" class="pre"></pre>
+
+        <div class="callout">
+          <strong>Rule:</strong> When tired, do the default. No changes required.
+        </div>
       </div>
     </section>
 
-    <!-- OPTIONAL SWAPS -->
+    <!-- OPTIONAL SWAPS (closed by default; not part of the core path) -->
     <section id="swaps" class="card">
       <div class="section-head">
-        <h2>Optional swaps (only if you get bored)</h2>
-        <p class="muted">80% of people should never touch this.</p>
+        <h2>Optional swaps</h2>
+        <p class="muted">Most people should never touch this.</p>
       </div>
 
-      <div class="swap-grid">
-        <div class="swap-card">
-          <h3>Swap lunch protein</h3>
-          <p class="muted">Keep rice + veg the same.</p>
-          <div class="chips" id="proteinChips">
-            <button class="chip" data-protein="Chicken">Chicken</button>
-            <button class="chip" data-protein="Turkey">Turkey</button>
-            <button class="chip" data-protein="Beef">Beef</button>
-            <button class="chip" data-protein="Tofu">Tofu</button>
-          </div>
-        </div>
+      <details class="drawer">
+        <summary>I’m bored — show swaps</summary>
 
-        <div class="swap-card">
-          <h3>Swap breakfast fruit</h3>
-          <p class="muted">Keep yogurt + oats the same.</p>
-          <div class="chips" id="fruitChips">
-            <button class="chip" data-fruit="Banana">Banana</button>
-            <button class="chip" data-fruit="Apple">Apple</button>
-            <button class="chip" data-fruit="Berries">Berries</button>
+        <div class="swap-grid" style="margin-top:12px;">
+          <div class="swap-card">
+            <h3>Swap lunch protein</h3>
+            <p class="muted">Keep everything else the same.</p>
+            <div class="chips" id="proteinChips">
+              <button class="chip" data-protein="Chicken">Chicken</button>
+              <button class="chip" data-protein="Turkey">Turkey</button>
+              <button class="chip" data-protein="Beef">Beef</button>
+              <button class="chip" data-protein="Tofu">Tofu</button>
+            </div>
+          </div>
+
+          <div class="swap-card">
+            <h3>Swap breakfast fruit</h3>
+            <p class="muted">Keep yogurt + oats the same.</p>
+            <div class="chips" id="fruitChips">
+              <button class="chip" data-fruit="Banana">Banana</button>
+              <button class="chip" data-fruit="Apple">Apple</button>
+              <button class="chip" data-fruit="Berries">Berries</button>
+            </div>
           </div>
         </div>
-      </div>
+      </details>
     </section>
 
-    <!-- WHY -->
+    <!-- WHY (closed by default) -->
     <section class="card">
       <div class="section-head">
-        <h2>Why this works (optional reading)</h2>
-        <p class="muted">Skip this if you already grabbed the list.</p>
+        <h2>Why this works</h2>
+        <p class="muted">Optional. Skip this.</p>
       </div>
 
-      <div class="content">
-        <h3>The enemy is decision fatigue</h3>
-        <p>
-          People don’t fail because of discipline. They fail because food requires
-          decisions every day. This removes them.
-        </p>
+      <details class="drawer">
+        <summary>Show the reasoning</summary>
+        <div class="content" style="margin-top:12px;">
+          <h3>Decision fatigue is the enemy</h3>
+          <p>
+            People don’t fail because of discipline. They fail because food requires
+            decisions every day. This removes them.
+          </p>
 
-        <h3>Boring food is sustainable food</h3>
-        <p>
-          Same meals. Same list. Same routine. You don’t need novelty — your brain
-          just thinks you do.
-        </p>
-      </div>
+          <h3>Boring food is sustainable food</h3>
+          <p>
+            Same meals. Same list. Same routine. You don’t need novelty — your brain
+            just thinks you do.
+          </p>
+        </div>
+      </details>
     </section>
 
     <footer class="footer">
